@@ -1,0 +1,57 @@
+/* Sets the background to a green color */
+#navbar-list {
+    overflow: hidden;
+    background-color: rgb(70, 188, 78);
+    display: flex;
+    text-align: center;
+}
+
+/* Spaces out all the elements in the navbar */
+#navbar-list>a, #navbar-list>h3, .navbar-dropdowns {
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 0px;
+}
+
+/* Highlights the current item being hovered over in the navbar */
+#navbar-list>a:hover, #navbar-list>div:hover, #navbar-list>h3:hover {
+    background-color: greenyellow;
+    cursor: pointer;
+}
+
+/* Initially hide the account and location list */
+.navbar-item-list {
+    display: none;
+    position: relative;
+}
+
+/* Show the account and location list */
+.show-list {
+    display: block;
+    position: absolute;
+    width: inherit;
+}
+
+/* Highlight the dropdown links when hovering over them */
+.show-list a:hover {
+    background-color: aquamarine;
+}
+
+/* Displays the elements in the drop down in a list */
+.show-list a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Rounds the search box */
+#search {
+    width: 40%;
+    border-radius: 20px;
+}
