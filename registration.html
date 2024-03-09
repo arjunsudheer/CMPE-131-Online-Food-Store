@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OFS - Login</title>
+    <link rel="stylesheet" href="authentication.css">
+</head>
+<body>
+    <div id="authentication-box">
+        <h3>Customer Registration</h3>
+        <p>Enter in your information below:</p>
+        <!-- User ID and Password registration form -->
+        <form action="Admin.php" method="post">
+            <!-- Stores the first name label and input field -->
+            <div class="authentication-input">
+                <label for="first-name">First name:</label>
+                <input type="text" name="first-name" id="first-name" placeholder="Enter your first name"/>
+            </div>
+            <!-- Stores the last name label and input field -->
+            <div class="authentication-input">
+                <label for="last-name">Last name:</label>
+                <input type="text" name="last-name" id="last-name" placeholder="Enter your last name"/>
+            </div>
+            <!-- Stores the email address label and input field -->
+            <div class="authentication-input">
+                <label for="email-address">Email address:</label>
+                <input type="text" name="email-address" id="email-address" placeholder="Enter your email"/>
+            </div>
+            <!-- Stores the username label and input field -->
+            <div class="authentication-input">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter your username"/>
+            </div>
+            <!-- Stores the password label, input field, and Show/Hide Password toggle -->
+            <div class="authentication-input">
+                <div>
+                    <label for="password" id="password">Password:</label>
+                    <input type="password" name="password" id="password-input" placeholder="Enter your password"/>
+                </div>
+                <input type="checkbox" id="password-view" name="password-view">Show Password
+                <!-- <button id="password-view" type="button">Show Password</button> -->
+            </div>
+            <!-- "Login" button to submit the form -->
+            <button type="submit" class="green-btn" id="registration-button">Sign Up</button>
+        </form>
+        <a id="back-btn" href="login.html"><-- Back</a>
+    </div>
+</body>
+<script src="authentication.js"></script>
+</html>
