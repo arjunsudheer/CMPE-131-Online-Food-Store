@@ -9,24 +9,34 @@
 </head>
 
 <body>
-    <div id="navbar-list">
-        <h3>OFS</h3>
-        <div class="navbar-dropdowns" id="location-dropdown">
-            <i class="fa fa-location-arrow" aria-hidden="true"></i> Location
-            <div id="location-list" class="navbar-item-list">
-                <a href="#">Location 1</a>
-                <a href="#">Location 2</a>
-                <a href="#">Location 3</a>
+    <!-- Left side bar -->
+    <div id="left-sidebar">
+        <h1>OFS</h1>
+        <p>At Downtown San Jose</p>
+        <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#"><i class="fa fa-fw fa-user"></i></i>Profile</a>
+        <p id="cart-button"><i class="fa fa-shopping-cart"></i> Cart</p>
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+    </div>
+    <!-- Search bar -->
+    <input id="product-search-bar" type="text" placeholder="Search">
+    <!-- Cart menu, will hide and show whenever the cart button is pressed -->
+    <div class="cart-menu">
+        <h3>Shopping Cart</h3>
+        <div class="cart-item">
+            <img src="#" alt="Shopping cart item">
+            <p>Apples</p>
+            <p>$5.00</p>
+            <p>2 lbs.</p>
+            <div class="product-quantity-adjustment">
+                <i id="subtract-quantity" class="fa fa-minus" aria-hidden="true"></i>
+                <p id="quantity-amount">1</p>
+                <i id="add-quantity" class="fa fa-plus" aria-hidden="true"></i>
             </div>
-        </div>
-        <input name="search" id="search" type="text" placeholder="Search Inventory">
-        <a href="#" class="navbar-item"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-        <div class="navbar-dropdowns" id="account-dropdown">
-            <i class="fa fa-fw fa-user"></i> Account
-            <div id="account-list" class="navbar-item-list">
-                <a href="#">Account Home</a>
-                <a href="#">Change Password</a>
-                <a href="#">Logout</a>
+            <div id="checkout-total">
+                <p>Subtotal = cost</p>
+                <p>Weight = lbs</p>
+                <button type="submit" id="checkout-button">Checkout</button>
             </div>
         </div>
     </div>

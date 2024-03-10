@@ -1,57 +1,68 @@
-/* Sets the background to a green color */
-#navbar-list {
-    overflow: hidden;
-    background-color: rgb(70, 188, 78);
-    display: flex;
+/* Set the minimum width of the body to be the viewable width */
+body {
+    min-width: 100vh;
+}
+
+/* Formats the elements inside the left sidebar and cart items list */
+#left-sidebar, .show-menu {
     text-align: center;
+    height: 100vh;
 }
 
-/* Spaces out all the elements in the navbar */
-#navbar-list>a, #navbar-list>h3, .navbar-dropdowns {
-    width: 20%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
+/* Sets the background to a green color and keeps the div on the left side */
+#left-sidebar {
+    width: 10%;
+    background-color: rgb(70, 188, 78);
+    float: left;
+}
+
+/* Displays the links in a vertical column */
+#left-sidebar>a, #cart-button {
+    display: block;
+    padding: 20px;
     color: black;
-    margin: 0px;
+    font-size: larger;
+    text-decoration: underline;
+    margin: 0;
 }
 
-/* Highlights the current item being hovered over in the navbar */
-#navbar-list>a:hover, #navbar-list>div:hover, #navbar-list>h3:hover {
-    background-color: greenyellow;
+/* Change the cursor to pointer when hovering over the cart icon and text */
+#cart-button:hover {
     cursor: pointer;
 }
 
-/* Initially hide the account and location list */
-.navbar-item-list {
+/* Sets the background color to light grey and keeps the cart list on the right side */
+.cart-menu {
     display: none;
-    position: relative;
 }
 
-/* Show the account and location list */
-.show-list {
+/* Displays the cart menu */
+.show-menu {
+    width: 15%;
+    background-color: rgb(231, 228, 228);
     display: block;
-    position: absolute;
-    width: inherit;
+    float: right;
 }
 
-/* Highlight the dropdown links when hovering over them */
-.show-list a:hover {
-    background-color: aquamarine;
+/* Display the minus, quantity amount and plus sign next to each other */
+.product-quantity-adjustment>* {
+    display: inline;
 }
 
-/* Displays the elements in the drop down in a list */
-.show-list a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    margin-top: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+#checkout-button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-size: large;
 }
 
-/* Rounds the search box */
-#search {
-    width: 40%;
-    border-radius: 20px;
+/* Places the search bar in the top center */
+#product-search-bar {
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }
