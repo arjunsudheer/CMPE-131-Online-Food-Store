@@ -1,0 +1,78 @@
+/* Displays the icon filters and the results/sort-by divs as flex */
+.main-page-box {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* Space the icon filters evenly */
+#icon-filters-box {
+    justify-content: space-evenly;
+}
+/* Make the icon filters have a round-border */
+.icon-filters {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    align-items: middle;
+}
+/* Set the cursor to pointer when hovering over the icon-filters */
+.icon-filters:hover {
+    cursor: pointer;
+}
+
+/* Make the number of results float to the left, and the sort-by menu float to the right */
+#number-of-results {
+    float: left;
+    font-size: large;
+    margin-left: 10%;
+}
+.sort-by {
+    float: right;
+    margin-right: 10%;
+}
+#sort-menu {
+    background-color: lightgray;
+}
+/* Maximize the space between the elements */
+#results-and-sort {
+    justify-content: space-between;
+}
+
+/* Sets the size of the product items */
+#product-item-view {
+    overflow: scroll;
+}
+/* Centers the table */
+#product-item-row {
+    justify-content: space-evenly;
+    width: 100%;
+    display: flex;
+}
+/* Makes all the product items centered and constant size */
+.product-item {
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    justify-content: space-evenly;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+/* Makes the price and add button fit on the left and right side toward the bottom */
+.price-and-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+/* Sets the button size and color */
+.add-btn {
+    height: fit-content;
+    background-color: black;
+    color: white;
+}
+/* Change mouse to cursor when hovering over add button */
+.add-btn:hover {
+    cursor: pointer;
+}
