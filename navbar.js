@@ -1,15 +1,4 @@
-// set the width of the searchBar
-let searchBar = document.getElementById("product-search-bar");
-const defaultSearchBarWidth = "85%";
-searchBar.style.width = defaultSearchBarWidth;
-
 document.getElementById("cart-button").addEventListener("click", function () {
-    // adjust the size of the search bar accordingly
-    if (searchBar.style.width == defaultSearchBarWidth) {
-        searchBar.style.width = "70%";
-    } else {
-        searchBar.style.width = defaultSearchBarWidth;
-    }
     // show the cart menu on the right side
     document.getElementsByClassName("cart-menu")[0].classList.toggle("show-menu");
 });
