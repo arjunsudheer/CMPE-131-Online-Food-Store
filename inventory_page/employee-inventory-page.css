@@ -1,0 +1,39 @@
+
+.item
+{
+    background-color: black;
+    color: white;
+}
+
+.item img
+{
+    height: 70px;
+    width: 70px;
+}
+
+.itemDesc
+{
+    display: flex;
+}
+
+.itemDesc p
+{
+    padding-left: 10px;
+    flex-grow: 1;
+}
+
+.changer
+{
+    width: 120px;
+}
+
+.changeItem
+{
+    padding-left: 10px;
+    display: flex;
+}
+
+.changeItem div
+{
+    flex-grow: 1;
+}

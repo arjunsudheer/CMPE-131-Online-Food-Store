@@ -1,31 +1,26 @@
+<?php include("../main_page/navbar.html"); ?>
+
 <!DOCTYPE HTML>
-<html>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+<html lang="en">
+    <link rel="stylesheet" href="employee-inventory-page.css">
+    <link rel="stylesheet" href="../main_page/navbar.css">
+    <script src="employee-inventory-page.js"></script>
     <body>
-        <div class="sidebar">
-            <div class="ofs">OFS</div>
-            <div class="ofs_2">at downtown San Jose</div>
-            <a href="index.html">Home</a>
-            <a href="index.html">Profile</a>
-            <a href="index.html">Inventory</a>
-            <a href="index.html">Orders</a>
-            <a href="index.html">Logout</a>
-        </div>
-        <div style="padding-left: 120px; padding-bottom: 10px;">
+        
+        <div style="padding-left: 160px; padding-bottom: 10px;">
             <input type="text" class="searchbar">
-            <button>Save</button>
+            <button style="float:right">Save</button>   
         </div>
-        <div style="padding-left: 120px">
+        <div style="padding-left: 160px">
             <button>Filter #1</button>
             <button>Filter #2</button>
             <button>Filter #3</button>
             <button>Filter #4</button>
-            <button>Add Item</button>
+            <button style="float:right">Add Item</button>
         </div>
-        <div style="padding-left: 120px">
-            <p># of Results</p>
-            <select>
+        <div style="padding-left: 160px">
+            <p style="display:inline-block"># of Results</p>
+            <select style="float:right; margin-top: 15px">
                 <option>A-Z</option>
                 <option>Z-A</option>
                 <option>Cheapest</option>
@@ -33,7 +28,7 @@
                 <option>In Stock (Z-A)</option>
             </select>
         </div>
-        <div style="padding-left: 120px">
+        <div style="padding-left: 160px">
             <div class="item">
                 <img style="float:left">
                 <div class="itemDesc">
