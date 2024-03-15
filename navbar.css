@@ -49,6 +49,7 @@ body {
     display: inline;
 }
 
+/* Formats the checkout button to be large and light green in color */
 #checkout-button {
     padding-left: 15px;
     padding-right: 15px;
@@ -57,12 +58,4 @@ body {
     background-color: lightgreen;
     border-radius: 5px;
     font-size: large;
-}
-
-/* Places the search bar in the top center */
-#product-search-bar {
-    background-color: lightgray;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
 }
