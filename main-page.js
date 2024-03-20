@@ -1,53 +1,35 @@
-// stores commonly used elements
-let productPopup = document.getElementById("product-information-popup-animate");
-let mainPageContainers = document.getElementsByClassName("main-page-box");
-// check if the productPopup element exists on the page
-if (productPopup !== null) {
-    // blur all elements except the popup div
-    for (let i = 0; i < mainPageContainers.length; i++) {
-        if (mainPageContainers[i] !== productPopup) {
-            mainPageContainers[i].style.filter = "blur(8px)";
-        }
-    }
-    document.getElementById("product-item-view").style.filter = "blur(8px)";
-    document.getElementById("left-sidebar").style.filter = "blur(8px)";
-    document.getElementsByClassName("cart-menu")[0].style.filter = "blur(8px)";
-    document.getElementById("product-search-bar").style.filter = "blur(8px)";
-
-    // if the close button is pressed, remove the popup div element
-    document.getElementById("popup-close-button").addEventListener("click", function () {
-        productPopup.remove();
-        removeBlurEffect();
-    });
-    // store all the elements within the popup div container
-    let productPopupImage = document.getElementById("product-image");
-    let productPopupInformationContainer = document.getElementById("product-information");
-    let productPopupInformation = document.getElementsByClassName("popup-product-info");
-    // if the user clicks outside of the popup div, then delete the popup div
-    document.addEventListener("click", function (e) {
-        if (e.target !== productPopup && e.target !== productPopupImage && e.target !== productPopupInformationContainer &&
-            e.target !== productPopupInformation[0] && e.target !== productPopupInformation[1] && e.target !== productPopupInformation[2] &&
-            e.target !== productPopupInformation[3]) {
-            productPopup.remove();
-            removeBlurEffect();
+// get all the product information divs and add to cart buttons
+let productItems = document.getElementsByClassName("product-item");
+let productItemsButtons = document.getElementsByClassName("add-btn");
+// add an event listener to each product information div, when clicked show the product information popup
+for (let i = 0; i < productItems.length; i++) {
+    productItems[i].addEventListener("click", function (e) {
+        // don't show the product information popup if the add to cart button was clicked
+        if (e.target !== productItemsButtons[i]) {
+            invokePopupCreation(productItems[i].getElementsByTagName("p")[0].innerHTML);
         }
     });
 }
-// remove the blur effect from all other elements on the webpage
-function removeBlurEffect() {
-    for (let i = 0; i < mainPageContainers.length; i++) {
-        if (mainPageContainers[i] !== productPopup) {
-            mainPageContainers[i].style.filter = "none";
-        }
-    }
-    document.getElementById("product-item-view").style.filter = "none";
-    document.getElementById("left-sidebar").style.filter = "none";
-    document.getElementsByClassName("cart-menu")[0].style.filter = "none";
-    document.getElementById("product-search-bar").style.filter = "none";
+// add an event listener to each add to cart button, when clicked show the added to cart success popup
+for (let i = 0; i < productItemsButtons.length; i++) {
+    productItemsButtons[i].addEventListener("click", function () {
+        invokePopupCreation("add-to-cart");
+    });
 }
 
-// removes the "item added to cart" success message after 3 seconds
-let addToCartSuccessPopup = document.getElementById("add-to-cart-success-popup");
-if (addToCartSuccessPopup !== null) {
-    setTimeout(() => addToCartSuccessPopup.remove(), 3000);
+// invoke PHP functions to add popup menus
+function invokePopupCreation(message) {
+    // open a new XMLHttpRequest and use a POST request to popups.php
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "popups.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // append the returned popup to the end of the main-page.php file
+            document.body.insertAdjacentHTML("beforeend", xhr.responseText);
+            managePopups();
+        }
+    };
+    // send the request to popups.php
+    xhr.send("name=" + encodeURIComponent(message));
 }

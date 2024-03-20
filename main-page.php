@@ -1,7 +1,6 @@
 <?php include("navbar.html"); ?>
 <?php include("search-bar.html"); ?>
 
-<!-- Icon Filters -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +11,7 @@
 </head>
 
 <body>
+    <!-- Icon Filters -->
     <div id="icon-filters-box" class="main-page-box">
         <div class="icon-filters">
             <p>Fruits</p>
@@ -109,27 +109,13 @@
                 <img src="#" alt="product-item">
                 <div class="price-and-add">
                     <p>$17.00</p>
-                    <button class="add-btn">Add</button>
+                    <button type="submit" class="add-btn">Add</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Pop-up menu to show more information about a product -->
-    <div id="product-information-popup-animate" class="main-page-box product-information-popup">
-        <button id="popup-close-button">Close <i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-        <img src="#" alt="product-image" id="product-image">
-        <div id="product-information">
-            <p class="popup-product-info">Product Name</p>
-            <p class="popup-product-info">Product Price</p>
-            <p class="popup-product-info">Product Quantity</p>
-            <p class="popup-product-info">Quantity Remaining</p>
-        </div>
-    </div>
-    <!-- Popup to show success message once item is added to cart -->
-    <div id="add-to-cart-success-popup" class="main-page-box">
-        Item Added To Cart 🎊
-    </div>
     <script src="main-page.js"></script>
+    <script src="popups.js"></script>
 </body>
 
 </html>
