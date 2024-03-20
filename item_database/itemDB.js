@@ -16,15 +16,19 @@ class itemClass
     printToConsole()
     {
         console.log("Type: ", this.type, " Product: ", this.product, " Name/Brand: ", this.brand, " Price: ", this.price, " Weight: ", this.weight, " Bundle: ", this.bundle, " In Stock: ", this.inStock)
+        return "Type: " + this.type + " Product: " + this.product + " Name/Brand: " + this.brand + " Price: " + this.price + " Weight: " + this.weight + " Bundle: " + this.bundle + " In Stock: " + this.inStock;
     }
 }
 
 // Key needs to be refreshed every 10 minutes after use until personal key created (Arjun needs to make it because he is owner of repo)
 
-function MyFunc(){
-    fetch('https://raw.githubusercontent.com/arjunsudheer/CMPE-131-Online-Food-Store/feature/item-database/item_database/itemDB.csv?token=GHSAT0AAAAAACOHYAV3Q5TZRWTG3CJQTLUIZP3HMWA')
+function MyFunc()
+{
+    fetch('https://raw.githubusercontent.com/arjunsudheer/CMPE-131-Online-Food-Store/feature/item-database/item_database/itemDB.csv?token=GHSAT0AAAAAACOHYAV3PM6HLVL5LQ6ZJNQWZP3JFVA')
         .then(response => response.text())
         .then(text => createItem(text))
+
+    addToHTML();
 }
 
 function createItem(line)
@@ -67,7 +71,6 @@ function addToDB(line)
         {
             const newClass = new itemClass(type, product, brand, price, weight, bundle, inStock);
             itemDataBase.push(newClass);
-            newClass.printToConsole();
         }
         else
         {
@@ -104,4 +107,19 @@ function addToDB(line)
                 temp += line[i];
         }
     }
+}
+
+
+function addToHTML()
+{
+    const items = document.querySelector("#items");
+    
+    let htmlString = "";
+
+    for (var i = 0; i < itemDataBase.length; i++)
+    {
+        htmlString += `<p>${itemDataBase[i].printToConsole()}</p>`;
+    }
+
+    items.innerHTML = htmlString;
 }
