@@ -83,11 +83,6 @@
     color: white;
 }
 
-/* Change mouse to cursor when hovering over add button */
-.add-btn:hover {
-    cursor: pointer;
-}
-
 /* Popup Menu Styling */
 /* Formats the product-information popup box */
 .product-information-popup {
@@ -124,6 +119,10 @@
     flex-basis: 100%;
 }
 
+#popup-close-button:hover {
+    cursor: pointer;
+}
+
 /* Animates the popup box to move from the bottom to the middle of the screen */
 @keyframes move-popup-to-middle {
     from {
@@ -141,11 +140,10 @@
     background-color: lightgreen;
     text-align: center;
     border: 1px solid black;
-    width: 10%;
     position: absolute;
     left: 45%;
     top: 70%;
-    padding: 2px;
+    padding: 5px;
     z-index: 9;
     animation: add-to-cart-success 0.3s ease;
 }

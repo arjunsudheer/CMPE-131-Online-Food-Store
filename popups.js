@@ -26,7 +26,7 @@ function createProductInformationPopup() {
         let productPopupInformation = document.getElementsByClassName("popup-product-info");
         // if the user clicks outside of the popup div, then delete the popup div
         document.addEventListener("click", function (e) {
-            if (e.target !== productPopup && e.target !== productPopupImage && e.target !== productPopupInformationContainer &&
+            if (productPopup !== null && e.target !== productPopup && e.target !== productPopupImage && e.target !== productPopupInformationContainer &&
                 e.target !== productPopupInformation[0] && e.target !== productPopupInformation[1] && e.target !== productPopupInformation[2] &&
                 e.target !== productPopupInformation[3]) {
                 productPopup.remove();
