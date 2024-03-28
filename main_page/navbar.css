@@ -1,0 +1,68 @@
+/* Set the minimum width of the body to be the viewable width */
+body {
+    min-width: 100vh;
+}
+
+/* Formats the elements inside the left sidebar and cart items list */
+#left-sidebar, .show-menu {
+    text-align: center;
+    height: 100vh;
+}
+
+/* Sets the background to a green color and keeps the div on the left side */
+#left-sidebar {
+    width: 10%;
+    background-color: rgb(70, 188, 78);
+    float: left;
+}
+
+/* Displays the links in a vertical column */
+#left-sidebar>a, #cart-button {
+    display: block;
+    padding: 20px;
+    color: black;
+    font-size: larger;
+    text-decoration: underline;
+    margin: 0;
+}
+
+/* Change the cursor to pointer when hovering over the cart icon and text */
+#cart-button:hover {
+    cursor: pointer;
+}
+
+/* Sets the background color to light grey and keeps the cart list on the right side */
+.cart-menu {
+    display: none;
+}
+
+/* Displays the cart menu */
+.show-menu {
+    width: 15%;
+    background-color: rgb(231, 228, 228);
+    display: block;
+    float: right;
+}
+
+/* Display the minus, quantity amount and plus sign next to each other */
+.product-quantity-adjustment>* {
+    display: inline;
+}
+
+#checkout-button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-size: large;
+}
+
+/* Places the search bar in the top center */
+#product-search-bar {
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}

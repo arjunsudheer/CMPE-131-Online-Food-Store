@@ -24,7 +24,7 @@ class itemClass
 
 function MyFunc()
 {
-    fetch('https://raw.githubusercontent.com/arjunsudheer/CMPE-131-Online-Food-Store/feature/item-database/item_database/itemDB.csv?token=GHSAT0AAAAAACOHYAV3PM6HLVL5LQ6ZJNQWZP3JFVA')
+    fetch('https://raw.githubusercontent.com/arjunsudheer/CMPE-131-Online-Food-Store/feature/item-database/item_database/itemDB.csv?token=GHSAT0AAAAAACOHYAV3TT5FBFTUT46PXJI2ZQE6UBA')
         .then(response => response.text())
         .then(text => createItem(text))
 
@@ -122,4 +122,19 @@ function addToHTML()
     }
 
     items.innerHTML = htmlString;
+}
+
+function partition()
+{
+
+}
+
+function qs(b, e)
+{
+    
+}
+
+function sortAZ()
+{
+
 }
