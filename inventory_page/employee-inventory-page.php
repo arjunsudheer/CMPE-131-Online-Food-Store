@@ -49,7 +49,7 @@
             echo 
             "<div class='item'>
                 <div class='itemLeft'>
-                    <img src='apple.jpg' class='image'>
+                    <img src='#' class='image'>
                     <div class='itemDesc1'>
                         <div class='type'>
                             <p>Type:&nbsp</p>
