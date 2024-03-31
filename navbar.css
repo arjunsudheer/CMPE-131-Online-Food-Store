@@ -1,6 +1,7 @@
-/* Set the minimum width of the body to be the viewable width */
+/* Set the minimum width of the body to be the viewable width and removes all margin */
 body {
     min-width: 100vh;
+    margin: 0;
 }
 
 /* Formats the elements inside the left sidebar and cart items list */
