@@ -46,13 +46,14 @@
     justify-content: space-between;
 }
 
-/* Sets the size of the product items */
+/* Sets the size of the product items view container */
 #product-item-view {
     overflow: scroll;
+    height: 60vh;
 }
 
 /* Centers the table */
-#product-item-row {
+.product-item-row {
     justify-content: space-evenly;
     width: 100%;
     display: flex;
@@ -67,6 +68,7 @@
     display: inline-block;
     border: 1px solid black;
     border-radius: 10px;
+    width: 15%;
 }
 
 /* Makes the price and add button fit on the left and right side toward the bottom */
@@ -81,6 +83,11 @@
     height: fit-content;
     background-color: black;
     color: white;
+}
+
+/* Underlines the "Brand:" text for each product item */
+.brand-name {
+    text-decoration: underline;
 }
 
 /* Popup Menu Styling */
