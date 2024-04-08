@@ -8,35 +8,41 @@ function updatePopupReferences() {
     productInformationPopup = document.getElementById("product-information-popup-animate");
     addToCartSuccessPopup = document.getElementById("add-to-cart-success-popup");
 }
+// adds the event listeners to each product item
+function refreshPopupEventListeners() {
+    productItems = document.getElementsByClassName("product-item");
+    productItemsButtons = document.getElementsByClassName("add-btn");
 
-// add an event listener to each product information div, when clicked show the product information popup
-for (let i = 0; i < productItems.length; i++) {
-    productItems[i].addEventListener("click", function (e) {
-        /* 
-        * don't show the product information popup if the add to cart button was clicked,
-        * only create new popup if there isn't already one displayed on the screen
-        */
-        updatePopupReferences();
-        if (e.target !== productItemsButtons[i] && productInformationPopup === null) {
-            if (addToCartSuccessPopup !== null) {
-                addToCartSuccessPopup.remove();
+    console.log("refresh");
+    // add an event listener to each product information div, when clicked show the product information popup
+    for (let i = 0; i < productItems.length; i++) {
+        productItems[i].addEventListener("click", function (e) {
+            /* 
+            * don't show the product information popup if the add to cart button was clicked,
+            * only create new popup if there isn't already one displayed on the screen
+            */
+            updatePopupReferences();
+            if (e.target !== productItemsButtons[i] && productInformationPopup === null) {
+                if (addToCartSuccessPopup !== null) {
+                    addToCartSuccessPopup.remove();
+                }
+                invokePopupCreation(productItems[i].getElementsByTagName("p")[0].innerHTML);
             }
-            invokePopupCreation(productItems[i].getElementsByTagName("p")[0].innerHTML);
-        }
-    });
-}
-// add an event listener to each add to cart button, when clicked show the added to cart success popup
-for (let i = 0; i < productItemsButtons.length; i++) {
-    productItemsButtons[i].addEventListener("click", function () {
-        // only create new popup if there isn't already one displayed on the screen
-        updatePopupReferences();
-        if (productInformationPopup === null) {
-            if (addToCartSuccessPopup !== null) {
-                addToCartSuccessPopup.remove();
+        });
+    }
+    // add an event listener to each add to cart button, when clicked show the added to cart success popup
+    for (let i = 0; i < productItemsButtons.length; i++) {
+        productItemsButtons[i].addEventListener("click", function () {
+            // only create new popup if there isn't already one displayed on the screen
+            updatePopupReferences();
+            if (productInformationPopup === null) {
+                if (addToCartSuccessPopup !== null) {
+                    addToCartSuccessPopup.remove();
+                }
+                invokePopupCreation("add-to-cart");
             }
-            invokePopupCreation("add-to-cart");
-        }
-    });
+        });
+    }
 }
 // invoke PHP functions to add popup menus
 function invokePopupCreation(message) {
@@ -122,6 +128,8 @@ function invokeProductItemCreation(productFilter) {
             document.getElementById("product-item-view").insertAdjacentHTML("beforeend", xhr.responseText);
             // update the number of results
             updateNumberOfResults();
+            // refresh the event listeners with the new product items
+            refreshPopupEventListeners();
         }
     };
     // send the request to add-products.php
@@ -133,3 +141,4 @@ function updateNumberOfResults() {
     document.getElementById("number-of-results").innerHTML = document.getElementsByClassName("product-item").length + " results";
 }
 updateNumberOfResults();
+refreshPopupEventListeners();

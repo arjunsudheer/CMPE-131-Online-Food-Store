@@ -48,7 +48,7 @@
 /* Sets the size of the product items view container */
 #product-item-view {
     overflow: scroll;
-    height: 70vh;
+    height: 65vh;
 }
 
 /* Centers the table */
@@ -125,8 +125,14 @@
     flex-basis: 100%;
 }
 
+/* Changes the cursor to pointer when hovering over the close button */
 #popup-close-button:hover {
     cursor: pointer;
+}
+
+/* Underlines the labels for the popup information box */
+.popup-product-label {
+    text-decoration: underline;
 }
 
 /* Animates the popup box to move from the bottom to the middle of the screen */
