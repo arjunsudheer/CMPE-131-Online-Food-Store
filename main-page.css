@@ -17,7 +17,6 @@
     width: 100px;
     height: 100px;
     text-align: center;
-    align-items: middle;
 }
 
 /* Set the cursor to pointer when hovering over the icon-filters */
@@ -49,7 +48,7 @@
 /* Sets the size of the product items view container */
 #product-item-view {
     overflow: scroll;
-    height: 60vh;
+    height: 70vh;
 }
 
 /* Centers the table */
