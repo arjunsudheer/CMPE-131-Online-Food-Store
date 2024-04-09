@@ -4,20 +4,16 @@ $items_added = 0;
 
 // handles the XMLHTTPRequest from main-page.js
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $filter = htmlspecialchars($_POST['name']);
+    $filter = json_decode($_POST['name']);
     if (isset($filter) && !empty($filter)) {
-        if ($filter === "results-count") {
-            echo $GLOBALS["items_added"];
-        } else {
-            // set the item_added count to 0
-            $GLOBALS["items_added"] = 0;
-            addProductItems($filter);
-        }
+        // set the item_added count to 0
+        $GLOBALS["items_added"] = 0;
+        addProductItems($filter);
     }
 }
 
 // adds product items by querying database, default parameters selects all product items from database
-function addProductItems($productFilter = "*")
+function addProductItems($productFilter = [])
 {
     // establish connection to database
     $connection = mysqli_connect("localhost", "root", "", "ofs");
@@ -27,11 +23,17 @@ function addProductItems($productFilter = "*")
         die("Connection failed: " . mysqli_connect_error());
     }
     // get all the product items if no productFilter is specified
-    if ($productFilter === "*") {
-        $sql_get_item = "SELECT * FROM Items";
-        // get all product items where the Type of the product is productFilter
-    } else {
-        $sql_get_item = "SELECT * FROM Items WHERE Type = '$productFilter'";
+    $sql_get_item = "SELECT * FROM Items";
+    // get all product items where the Type of the product is productFilter
+    if (!empty($productFilter)) {
+        $sql_get_item .= " WHERE ";
+        // display all product items for each filter
+        for ($i = 0; $i < count($productFilter); $i++) {
+            if ($i !== 0) {
+                $sql_get_item .= " OR ";
+            }
+            $sql_get_item .= "Type='$productFilter[$i]'";
+        }
     }
     $product_item = mysqli_query($connection, $sql_get_item);
     // display the product items on the webpage

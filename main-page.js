@@ -4,6 +4,7 @@ let productItemsButtons = document.getElementsByClassName("add-btn");
 // store the popup divs in variables
 let productInformationPopup;
 let addToCartSuccessPopup;
+// reassigns popup variables
 function updatePopupReferences() {
     productInformationPopup = document.getElementById("product-information-popup-animate");
     addToCartSuccessPopup = document.getElementById("add-to-cart-success-popup");
@@ -13,7 +14,6 @@ function refreshPopupEventListeners() {
     productItems = document.getElementsByClassName("product-item");
     productItemsButtons = document.getElementsByClassName("add-btn");
 
-    console.log("refresh");
     // add an event listener to each product information div, when clicked show the product information popup
     for (let i = 0; i < productItems.length; i++) {
         productItems[i].addEventListener("click", function (e) {
@@ -103,17 +103,19 @@ function removeProductItems() {
 
 // invokes invokeProductItemCreation() function for all active icon filters
 function toggleProductItemVisibility() {
-    // keep track of the number of results returned
+    // keep track of the number of active filters returned
     let activeIconFilters = document.getElementsByClassName("icon-filter-active");
+    // array for the filter strings based on the current active filters
+    let productItemCategory = [];
     // if no filters are selected, show all products
     if (activeIconFilters.length === 0) {
         activeIconFilters = iconFilters;
     }
-    // display all product items for each filter
+    // add each filter to the productItemCategory array
     for (let i = 0; i < activeIconFilters.length; i++) {
-        let productItemCategory = activeIconFilters[i].children[0].innerHTML;
-        invokeProductItemCreation(productItemCategory);
+        productItemCategory.push(activeIconFilters[i].children[0].innerHTML);
     }
+    invokeProductItemCreation(productItemCategory);
 }
 
 // adds product items to main page
@@ -133,7 +135,8 @@ function invokeProductItemCreation(productFilter) {
         }
     };
     // send the request to add-products.php
-    xhr.send("name=" + encodeURIComponent(productFilter));
+    xhr.send("name=" + encodeURIComponent(JSON.stringify(productFilter)));
+
 }
 
 // sets the number of results equal to the number of product-item divs that are on the webpage
