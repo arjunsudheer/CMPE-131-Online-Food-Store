@@ -1,0 +1,72 @@
+
+.item
+{
+    background-color: black;
+    color: white;
+    display: inline-block;
+    width: 650px;
+    max-width: 650px;
+    height: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.item .itemLeft
+{
+    float: left;
+    display: flex;
+}
+
+.item .itemRight
+{
+    margin-left: 20%;
+}
+
+.image
+{
+    height: 75px;
+    margin: auto;
+    margin-left: 5%;
+}
+
+.itemDesc1
+{
+    margin-left: 3%;
+}
+
+.type, .product, .brand, .priceDesc, .weightDesc, .quantityDesc
+{
+    display: flex;
+    text-wrap: nowrap;
+}
+
+.product, .brand
+{
+    margin-top: -18%;
+}
+
+.price 
+{
+    margin-left: 10%;
+}
+
+.weight 
+{
+    margin-right: 2.5%;
+}
+
+.itemDesc2
+{
+    display: flex;
+}
+
+.changeItem
+{
+    display: flex;
+}
+
+.changer
+{
+    width: 30%;
+}
