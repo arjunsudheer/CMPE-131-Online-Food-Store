@@ -28,11 +28,15 @@ function addProductItems($productFilter = [])
     if (!empty($productFilter)) {
         $sql_get_item .= " WHERE ";
         // display all product items for each filter
-        for ($i = 0; $i < count($productFilter) - 1; $i++) {
-            if ($i !== 0) {
+        for ($i = 1; $i < count($productFilter) - 1; $i++) {
+            if ($i !== 1) {
                 $sql_get_item .= " OR ";
             }
             $sql_get_item .= "Type='$productFilter[$i]'";
+            // if the first array element is a non-empty string, then filter by the search result too
+            if ($productFilter[0] !== "") {
+                $sql_get_item .= " AND (Product LIKE '%$productFilter[0]%' OR Brand LIKE '%$productFilter[0]%')";
+            }
         }
         switch ($productFilter[count($productFilter) - 1]) {
             case "name":
