@@ -28,11 +28,22 @@ function addProductItems($productFilter = [])
     if (!empty($productFilter)) {
         $sql_get_item .= " WHERE ";
         // display all product items for each filter
-        for ($i = 0; $i < count($productFilter); $i++) {
+        for ($i = 0; $i < count($productFilter) - 1; $i++) {
             if ($i !== 0) {
                 $sql_get_item .= " OR ";
             }
             $sql_get_item .= "Type='$productFilter[$i]'";
+        }
+        switch ($productFilter[count($productFilter) - 1]) {
+            case "name":
+                $sql_get_item .= " ORDER BY Product ASC";
+                break;
+            case "weight":
+                $sql_get_item .= " ORDER BY Weight ASC";
+                break;
+            case "price":
+                $sql_get_item .= " ORDER BY Price ASC";
+                break;
         }
     }
     $product_item = mysqli_query($connection, $sql_get_item);

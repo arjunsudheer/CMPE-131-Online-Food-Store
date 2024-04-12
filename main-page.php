@@ -43,7 +43,7 @@ include("add-products.php");
         <p id="number-of-results"># of Results</p>
         <select name="sort-menu" id="sort-menu" class="sort-by">
             <option value="sort-by">Sort By:</option>
-            <option value="weight">Name</option>
+            <option value="name">Name</option>
             <option value="weight">Weight</option>
             <option value="price">Price</option>
         </select>

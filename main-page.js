@@ -26,7 +26,9 @@ function refreshPopupEventListeners() {
                 if (addToCartSuccessPopup !== null) {
                     addToCartSuccessPopup.remove();
                 }
-                invokePopupCreation(productItems[i].getElementsByTagName("p")[0].innerHTML);
+                let productName = productItems[i].getElementsByTagName("p")[0].innerHTML;
+                let brandName = productItems[i].getElementsByTagName("p")[1].innerHTML;
+                invokePopupCreation([productName, brandName.substring(39, brandName.length)]);
             }
         });
     }
@@ -39,7 +41,7 @@ function refreshPopupEventListeners() {
                 if (addToCartSuccessPopup !== null) {
                     addToCartSuccessPopup.remove();
                 }
-                invokePopupCreation("add-to-cart");
+                invokePopupCreation(["add-to-cart", ""]);
             }
         });
     }
@@ -58,7 +60,7 @@ function invokePopupCreation(message) {
         }
     };
     // send the request to popups.php
-    xhr.send("name=" + encodeURIComponent(message));
+    xhr.send("name=" + encodeURIComponent(JSON.stringify(message)));
 }
 
 // change the cursor when the user hovers over the add button
@@ -115,6 +117,7 @@ function toggleProductItemVisibility() {
     for (let i = 0; i < activeIconFilters.length; i++) {
         productItemCategory.push(activeIconFilters[i].children[0].innerHTML);
     }
+    productItemCategory.push(sortMenu.value);
     invokeProductItemCreation(productItemCategory);
 }
 
@@ -138,6 +141,13 @@ function invokeProductItemCreation(productFilter) {
     xhr.send("name=" + encodeURIComponent(JSON.stringify(productFilter)));
 
 }
+
+// updates the product items when the sort menu option is changed
+let sortMenu = document.getElementById("sort-menu");
+sortMenu.addEventListener("change", function () {
+    removeProductItems();
+    toggleProductItemVisibility();
+});
 
 // sets the number of results equal to the number of product-item divs that are on the webpage
 function updateNumberOfResults() {
