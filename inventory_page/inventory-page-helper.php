@@ -7,7 +7,9 @@
         $counterString = "";
         $useSearch = false;
         $searchVal = "";
+        $sort = "";
         $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+        $inStock = false;
 
         if (isset($_POST['searchbar']))
         {
@@ -15,26 +17,69 @@
             $useSearch = true;
         }
 
-        if (array_key_exists('az', $_POST) || array_key_exists('za', $_POST) || array_key_exists('inStock', $_POST))
+        if (isset($_POST['add']))
         {
-            if (array_key_exists('az', $_POST))
+            if ($_POST['addType'] != "" && $_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
+            {
+                if ($_POST['addQuantity'] >= 1)
+                    $inStock = true;
+                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock) VALUES ('" . $_POST['addType'] . "', '" . $_POST['addProduct'] . "', '" . 
+                $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "');" . 
+                "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+            }
+            else 
+            {
+                echo "unable to add";
+            }
+        }
+
+        if (isset($_POST['del']))
+        {
+            $type = "all";
+            $sortDB = "DELETE FROM items WHERE Brand='" . $_POST['delVal'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+        }
+
+        if (isset($_POST['price']))
+        {
+            $type = "all";
+            $sortDB = "UPDATE items SET Price= '" . $_POST['price'] . "' WHERE Brand='" . $_POST['newPrice'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+        }
+
+        else if (isset($_POST['weight']))
+        {
+            $type = "all";
+            $sortDB = "UPDATE items SET Weight= '" . $_POST['weight'] . "' WHERE Brand='" . $_POST['newWeight'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+        }
+
+        else if (isset($_POST['quant']))
+        {
+            $type = "all";
+            $sortDB = "UPDATE items SET numStock= '" . $_POST['quant'] . "' WHERE Brand='" . $_POST['newQuant'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+        }
+
+        if (isset($_POST['az']) || isset($_POST['za']) || isset($_POST['inStock']))
+        {
+            if (isset($_POST['az']))
             {
                 $type = $_POST['filter'];
                 $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
+                $sort = "az";
             }
-            else if (array_key_exists('za', $_POST))
+            else if (isset($_POST['za']))
             {
                 $type = $_POST['filter'];
                 $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product DESC";
+                $sort = "za";
             }
-            else if (array_key_exists('inStock', $_POST))
+            else if (isset($_POST['inStock']))
             {
                 $type = $_POST['filter'];
                 $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product, inStock";
+                $sort = "inStock";
             }
         }
-        
-        // Setting up connection with database Geeks 
+
+        // Setting up connection with database 
         $connection = mysqli_connect("localhost", "root", "", "ofs"); 
 
         // Check connection 
@@ -44,9 +89,17 @@
         } 
 
         // Execute the query and store the result set 
-        $result = mysqli_query($connection, $sortDB);
+        mysqli_multi_query($connection, $sortDB);
 
-        if (array_key_exists('all', $_POST) || $type == "all" || $useSearch) { 
+        if (mysqli_more_results($connection))
+        {
+            mysqli_next_result($connection);
+        }
+
+        $result = mysqli_store_result($connection);
+
+        if (isset($_POST['all']) || $type == "all" || $useSearch) { 
+            $type = "all";
             while ($row = mysqli_fetch_array($result)) {
                 if ($useSearch)
                 {
@@ -80,42 +133,49 @@
                                     <p>Price:&nbsp</p>
                                     <p id='price'>" . $row["Price"] . "</p>
                                 </div>
-                                <div>
-                                <input type='text' class='changer' placeholder='Enter new price'>
-                                <br>
-                                <button>Submit</button>
-                                </div>
+                                <form method='post'>
+                                    <input type='text' class='changer' name='price' placeholder='Enter new price' />
+                                    <br>
+                                    <input type='submit' class='editInputs' value='Submit' />
+                                    <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
+                                </form>
                             </div>
                             <div class='weight'>
                                 <div class='weightDesc'>
                                     <p>Weight:&nbsp</p>
                                     <p id='weight'>" . $row["Weight"] . "</p>
                                 </div>
-                                <div>
-                                    <input type='text' class='changer' placeholder='Enter new weight'>
+                                <form method='post'>
+                                    <input type='text' class='changer' name='weight' placeholder='Enter new weight' />
                                     <br>
-                                    <button>Submit</button>
-                                </div>
+                                    <input type='submit' class='editInputs' value='Submit' />
+                                    <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
+                                </form>
                             </div>
                             <div class='quantity'>
                                 <div class='quantityDesc'>
                                     <p>Quantity:&nbsp</p>
                                     <p id='quantity'>" . $row["numStock"] . "</p>
                                 </div>
-                                <div>
-                                    <input type='text' class='changer' placeholder='Enter new quantity'>
+                                <form method='post'>
+                                    <input type='text' class='changer' name='quant' placeholder='Enter new quantity' />
                                     <br>
-                                    <button>Submit</button>
-                                </div>
+                                    <input type='submit' class='editInputs' value='Submit' />
+                                    <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
+                                </form>
                             </div>
+                            <form method='post'>
+                                <input type='submit' class='editInputs' name='del' value='Remove' />
+                                <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
+                            </form>
                         </div>
                     </div>
                 </div>";
             }
-            $type = "all";
         }
 
-        else if (array_key_exists('fruit', $_POST) || $type == "fruit") { 
+        else if (isset($_POST['fruit']) || $type == "fruit") { 
+            $type = "fruit";
             while ($row = mysqli_fetch_array($result)) {
                 if ($row["Type"] == "Fruits")
                 {
@@ -146,43 +206,46 @@
                                         <p>Price:&nbsp</p>
                                         <p id='price'>" . $row["Price"] . "</p>
                                     </div>
-                                    <div>
-                                    <input type='text' class='changer' placeholder='Enter new price'>
-                                    <br>
-                                    <button>Submit</button>
-                                    </div>
+                                    <form method='post'>
+                                        <input type='text' class='changer' name='priceText" . $row["Brand"] . "' placeholder='Enter new price' />
+                                        <br>
+                                        <input type='submit' class='editInputs' name='priceButton" . $row["Brand"] . "' value='Submit' />
+                                    </form>
                                 </div>
                                 <div class='weight'>
                                     <div class='weightDesc'>
                                         <p>Weight:&nbsp</p>
                                         <p id='weight'>" . $row["Weight"] . "</p>
                                     </div>
-                                    <div>
-                                        <input type='text' class='changer' placeholder='Enter new weight'>
+                                    <form method='post'>
+                                        <input type='text' class='changer' name='weightText" . $row["Brand"] . "' placeholder='Enter new weight' />
                                         <br>
-                                        <button>Submit</button>
-                                    </div>
+                                        <input type='submit' class='editInputs' name='weightButton" . $row["Brand"] . "' value='Submit' />
+                                    </form>
                                 </div>
                                 <div class='quantity'>
                                     <div class='quantityDesc'>
                                         <p>Quantity:&nbsp</p>
                                         <p id='quantity'>" . $row["numStock"] . "</p>
                                     </div>
-                                    <div>
-                                        <input type='text' class='changer' placeholder='Enter new quantity'>
+                                    <form method='post'>
+                                        <input type='text' class='changer' name='quantText" . $row["Brand"] . "' placeholder='Enter new quantity' />
                                         <br>
-                                        <button>Submit</button>
-                                    </div>
+                                        <input type='submit' class='editInputs' name='quantButton" . $row["Brand"] . "' value='Submit' />
+                                    </form>
                                 </div>
+                                <form method='post'>
+                                    <input type='submit' class='editInputs' name='del" . $row["Brand"] . "' value='Remove' />
+                                </form>
                             </div>
                         </div>
                     </div>";
                 }
             }
-            $type = "fruit";
         } 
 
-        else if (array_key_exists('vegetable', $_POST) || $type == "vegetable") { 
+        else if (isset($_POST['vegetable']) || $type == "vegetable") { 
+            $type = "vegetable";
             while ($row = mysqli_fetch_array($result)) {
                 if ($row["Type"] == "Vegetables")
                 {
@@ -246,7 +309,6 @@
                     </div>";
                 }
             }
-            $type = "vegetable";
         }
 
         $counterString = "<p style='display:inline-block' value='counter'> " . $counter . " results</p>";

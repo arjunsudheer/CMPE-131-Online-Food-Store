@@ -3,28 +3,22 @@
 <?php include 'employee-inventory-page.css'; ?>
 </style>
 
-
 <!DOCTYPE HTML>
 <html lang="en">
     <link rel="stylesheet" href="../navbar/navbar.css">
     <?php include 'inventory-page-helper.php'; ?>
     <body>
-        <form style="padding-left: 11%; padding-bottom: 10px;" method="post">
+        <form style="padding-left: 11%; padding-bottom: 10px; padding-top: 10px" method="post">
             <input type="text" class="searchbar" name="searchbar">
             <input type="submit" value="Search"/>  
         </form>
         <?php echo $tester; ?>
         <div style="padding-left: 11%">
-        <!--
-            <button name="addToPage">Fruits</button>
-            <button>Vegetables</button>
-            <button style="float:right">Add Item</button> 
-        !-->
-        <form method="post">
-            <input type="submit" name="all" value="all" />
-            <input type="submit" name="fruit" value="fruit" />
-            <input type="submit" name="vegetable" value="vegetable" />
-        </form>
+            <form method="post">
+                <input type="submit" name="all" value="all" />
+                <input type="submit" name="fruit" value="fruit" />
+                <input type="submit" name="vegetable" value="vegetable" />
+            </form>
         </div>
         <div style="padding-left: 11%">
             <?php echo $counterString; ?>
@@ -37,9 +31,22 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="filter" value="<?php echo $type; ?>"/>
+        <div class="adder">
+            <p>Enter information to add</p>
+            <form method="post">
+                <input type="text" name="addType" placeholder="Enter type"/>
+                <input type="text" name="addProduct" placeholder="Enter product"/>
+                <input type="text" name="addBrand" placeholder="Enter brand"/>
+                <input type="text" name="addPrice" placeholder="Enter price"/>
+                <input type="text" name="addWeight" placeholder="Enter weight"/>
+                <input type="text" name="addQuantity" placeholder="Enter quantity"/>
+                <input type="submit" class="editInputs" name="add" value="Add"/>
+            </form>
+        </div>
         <div style="padding-left: 11%">
             <?php echo $allItems; ?>
         </div>
-        <input type="hidden" name="filter" value="<?php echo $type; ?>">
+        <input type='hidden' name='sort' value='<?php echo $sort; ?>'/>
     </body>
 </html>
