@@ -40,7 +40,6 @@
                     <option value="1">Fruit</option>
                     <option value="2">Vegetable</option>
                 </select>
-                <input type="text" name="addType" placeholder="Enter type"/>
                 <input type="text" name="addProduct" placeholder="Enter product"/>
                 <input type="text" name="addBrand" placeholder="Enter brand"/>
                 <input type="text" name="addPrice" placeholder="Enter price"/>
