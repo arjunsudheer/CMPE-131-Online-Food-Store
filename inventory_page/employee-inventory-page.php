@@ -7,6 +7,7 @@
 <html lang="en">
     <link rel="stylesheet" href="../navbar/navbar.css">
     <?php include 'inventory-page-helper.php'; ?>
+    
     <body>
         <form style="padding-left: 11%; padding-bottom: 10px; padding-top: 10px" method="post">
             <input type="text" class="searchbar" name="searchbar">
@@ -15,9 +16,9 @@
         <?php echo $tester; ?>
         <div style="padding-left: 11%">
             <form method="post">
-                <input type="submit" name="all" value="all" />
-                <input type="submit" name="fruit" value="fruit" />
-                <input type="submit" name="vegetable" value="vegetable" />
+                <input type="submit" name="all" value="ALL" />
+                <input type="submit" name="fruit" value="FRUIT" />
+                <input type="submit" name="vegetable" value="VEGETABLE" />
             </form>
         </div>
         <div style="padding-left: 11%">
@@ -35,6 +36,10 @@
         <div class="adder">
             <p>Enter information to add</p>
             <form method="post">
+                <select name="addType">
+                    <option value="1">Fruit</option>
+                    <option value="2">Vegetable</option>
+                </select>
                 <input type="text" name="addType" placeholder="Enter type"/>
                 <input type="text" name="addProduct" placeholder="Enter product"/>
                 <input type="text" name="addBrand" placeholder="Enter brand"/>

@@ -1,4 +1,6 @@
 
+<script src="employee-inventory-page.js"></script>
+
 <?php 
         $counter = 0;
         $allItems = "";
@@ -10,6 +12,7 @@
         $sort = "";
         $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
         $inStock = false;
+        $initial = false;
 
         if (isset($_POST['searchbar']))
         {
@@ -19,17 +22,25 @@
 
         if (isset($_POST['add']))
         {
-            if ($_POST['addType'] != "" && $_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
+            if ($_POST['addType'] == 1)
+                $addType = "Fruits";
+            else 
+                $addType = "Vegetables";
+            if ($_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
             {
                 if ($_POST['addQuantity'] >= 1)
                     $inStock = true;
-                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock) VALUES ('" . $_POST['addType'] . "', '" . $_POST['addProduct'] . "', '" . 
+                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
                 $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "');" . 
                 "SELECT Type, Product, Brand, Price, Weight, numStock, inStock FROM items ORDER BY Product";
             }
             else 
             {
-                echo "unable to add";
+                echo "
+                    <script type='text/javascript'> 
+                            alert('unable to add'); 
+                    </script>
+                    ";
             }
         }
 
@@ -98,7 +109,7 @@
 
         $result = mysqli_store_result($connection);
 
-        if (isset($_POST['all']) || $type == "all" || $useSearch) { 
+        if (isset($_POST['all']) || $type == "all" || $useSearch || (!isset($_POST['fruit']) && !isset($_POST['vegetable']))) { 
             $type = "all";
             while ($row = mysqli_fetch_array($result)) {
                 if ($useSearch)
