@@ -1,0 +1,142 @@
+
+.item
+{
+    background-color: rgb(19, 43, 24);
+    color: white;
+    display: inline-block;
+    width: 650px;
+    max-width: 650px;
+    height: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+
+.item .itemLeft
+{
+    float: left;
+    display: flex;
+}
+
+.item .itemRight
+{
+    margin-left: 20%;
+}
+
+.image
+{
+    height: 75px;
+    margin: auto;
+    margin-left: 5%;
+}
+
+.itemDesc1
+{
+    margin-left: 3%;
+}
+
+.type, .product, .brand, .priceDesc, .weightDesc, .quantityDesc
+{
+    display: flex;
+    text-wrap: nowrap;
+}
+
+.product, .brand
+{
+    margin-top: -18%;
+}
+
+.price 
+{
+    margin-left: 10%;
+}
+
+.weight 
+{
+    margin-right: 2.5%;
+}
+
+.itemDesc2
+{
+    display: flex;
+}
+
+.changeItem
+{
+    display: flex;
+}
+
+.changer
+{
+    width: 30%;
+}
+  
+/* The container <div> - needed to position the dropdown content */
+.dropdown 
+{
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content 
+{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content input
+{
+    width: 100px;
+}
+  
+/* Buttons inside the dropdown */
+.dropdown-content input 
+{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content input:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.editInputs
+{
+    background-color: white;
+}
+
+.adder
+{
+    background-color: rgb(19, 43, 24);
+    color: white;
+    display: inline-block;
+    max-width: 75%;
+    min-width: 50%;
+    height: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    border-radius: 10px;
+    padding: 15px 15px;
+}
+
+.adder input
+{ 
+    padding: 1px;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+}
