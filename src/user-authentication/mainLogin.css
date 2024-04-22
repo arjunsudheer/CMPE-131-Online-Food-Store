@@ -2,13 +2,14 @@
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 90vh;
 }
 
 .box {
     width: 200px;
     height: 200px;
+    position: relative;
+    top: 20%;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -35,8 +36,10 @@
 }
 
 .introMessage {
-    margin-bottom: 10px; /* Add some spacing between the message and buttons */
-    text-align: center; /* Center align the message text */
+    margin-bottom: 10px;
+    /* Add some spacing between the message and buttons */
+    text-align: center;
+    /* Center align the message text */
 }
 
 .top-bar {
@@ -45,4 +48,9 @@
     padding: 10px 0;
     text-align: center;
     font-size: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }

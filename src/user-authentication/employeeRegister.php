@@ -1,16 +1,22 @@
+<?php include("authentication_animation.html"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>OFS - Employee Registration</title>
     <link rel="stylesheet" href="authentication.css">
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-  <header class="top-bar">
-    <a href="/main-page/main-page.php">
-        <img src="mainLogo.jpg" style="width: 100px; height: auto;">
-    </a>
-  </header>
+    <header class="top-bar">
+        <a href="/main-page/main-page.php">
+            <img src="mainLogo.jpg" style="width: 100px; height: auto;">
+        </a>
+    </header>
     <div id="authentication-box">
         <h3>Employee Registration</h3>
         <p>Enter your information below:</p>
@@ -76,22 +82,25 @@
         <form action="#" method="post" onsubmit="return validateEmployeeID()">
             <div class="authentication-input">
                 <label for="employee-id">Employee ID:</label>
-                <input type="text" id="employee-id" name="employee-id" required autocomplete="off">
+                <input type="text" id="employee-id" name="employee-id" placeholder="Enter your employee id" required autocomplete="off">
             </div>
             <div class="authentication-input">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required autocomplete="off">
+                <input type="text" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
             </div>
             <div class="authentication-input">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required autocomplete="off">
+                <input type="password" id="password-input" name="password" placeholder="Enter your password" required autocomplete="off">
+            </div>
+            <div>
                 <input type="checkbox" id="password-view">Show Password
             </div>
 
             <button type="submit" class="green-btn">Sign Up</button>
         </form>
-        <a id="back-btn" href="pickEmployeeOrCustomer.html"><-- Back</a>
+        <a id="back-btn" href="employeeLogin.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a>
     </div>
 </body>
-  <script src="authentication.js"></script> <!-- Include the JavaScript file -->
+<script src="authentication.js"></script> <!-- Include the JavaScript file -->
+
 </html>
