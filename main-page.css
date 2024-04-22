@@ -17,7 +17,6 @@
     width: 100px;
     height: 100px;
     text-align: center;
-    align-items: middle;
 }
 
 /* Set the cursor to pointer when hovering over the icon-filters */
@@ -46,13 +45,14 @@
     justify-content: space-between;
 }
 
-/* Sets the size of the product items */
+/* Sets the size of the product items view container */
 #product-item-view {
     overflow: scroll;
+    height: 65vh;
 }
 
 /* Centers the table */
-#product-item-row {
+.product-item-row {
     justify-content: space-evenly;
     width: 100%;
     display: flex;
@@ -67,6 +67,7 @@
     display: inline-block;
     border: 1px solid black;
     border-radius: 10px;
+    width: 15%;
 }
 
 /* Makes the price and add button fit on the left and right side toward the bottom */
@@ -81,6 +82,11 @@
     height: fit-content;
     background-color: black;
     color: white;
+}
+
+/* Underlines the "Brand:" text for each product item */
+.brand-name {
+    text-decoration: underline;
 }
 
 /* Popup Menu Styling */
@@ -119,8 +125,14 @@
     flex-basis: 100%;
 }
 
+/* Changes the cursor to pointer when hovering over the close button */
 #popup-close-button:hover {
     cursor: pointer;
+}
+
+/* Underlines the labels for the popup information box */
+.popup-product-label {
+    text-decoration: underline;
 }
 
 /* Animates the popup box to move from the bottom to the middle of the screen */

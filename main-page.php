@@ -1,5 +1,8 @@
-<?php include("navbar.html"); ?>
-<?php include("search-bar.html"); ?>
+<?php
+include("navbar.html");
+include("search-bar.html");
+include("add-products.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +43,7 @@
         <p id="number-of-results"># of Results</p>
         <select name="sort-menu" id="sort-menu" class="sort-by">
             <option value="sort-by">Sort By:</option>
+            <option value="name">Name</option>
             <option value="weight">Weight</option>
             <option value="price">Price</option>
         </select>
@@ -47,80 +51,7 @@
 
     <!-- Shows the product items -->
     <div id="product-item-view">
-        <div id="product-item-row">
-            <div class="product-item">
-                <p>Apple</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$1.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Banana</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$3.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Watermelon</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$5.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Peach</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$7.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-        </div>
-        <div id="product-item-row">
-            <div class="product-item">
-                <p>Carrot</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$8.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Cabbage</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$10.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Milk</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$15.00</p>
-                    <button class="add-btn">Add</button>
-                </div>
-            </div>
-
-            <div class="product-item">
-                <p>Pecan Pie</p>
-                <img src="#" alt="product-item">
-                <div class="price-and-add">
-                    <p>$17.00</p>
-                    <button type="submit" class="add-btn">Add</button>
-                </div>
-            </div>
-        </div>
+        <?php addProductItems(); ?>
     </div>
     <script src="main-page.js"></script>
     <script src="popups.js"></script>
