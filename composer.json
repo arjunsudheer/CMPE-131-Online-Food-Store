@@ -1,0 +1,19 @@
+{
+    "name": "arjunsudheer/cmpe-131-online-food-store",
+    "require-dev": {
+        "phpunit/phpunit": "9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arjunsudheer\\Cmpe131OnlineFoodStore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "arjunsudheer",
+            "email": "arjunsudheer05@outlook.com"
+        }
+    ],
+    "require": {},
+    "test": "vendor/bin/phpunit"
+}
