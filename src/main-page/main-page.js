@@ -150,7 +150,7 @@ sortMenu.addEventListener("change", function () {
 // store the search bar element
 let searchBar = document.getElementById("product-search-bar");
 // update the products shown based on the search, updates whenever a key is pressed
-searchBar.addEventListener("keyup", function() {
+searchBar.addEventListener("keyup", function () {
     toggleProductItemVisibility();
 });
 

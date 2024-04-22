@@ -21,71 +21,74 @@
         <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
     </div>
     <div style="margin: 0 auto;">
-                <div class="wrapper">
-                        <h1 class="title">Delivery Address</h1>
-                        <form>
-                            <div style="display: flex;flex-direction: column; text-align: center;">
-                                <label for="name">Name</label>
-                                <input required type="text" id="name" name="name" autocomplete="name" enterkeyhint="next">
-                            
-                                <label for="street-address">Street address</label>
-                                <input type="text" id="street-address" name="street-address" autocomplete="street-address" required enterkeyhint="next"></input>
-                            
-                            
-                                <label for="postal-code">ZIP or postal code (optional)</label>
-                                <input class="postal-code" id="postal-code" name="postal-code" autocomplete="postal-code" enterkeyhint="next">
-                            
-                                <label for="city">City</label>
-                                <input required type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next">
-                            </div>
-                        </form>
-                        <h2 class="title">Apply Discount Code</h2>
-                        <input class="title" required type="text" id="discount code" name="discount code" autocomplete="discount code" enterkeyhint="next">
-    </div>
-    <h2 class="title">Payment Details: </h2>
-    <div class="flex-container-hor">
-        <div><!-- Card Number -->
-            <label>Card Number</label>
-            <input class="card-number" placeholder="1234 1234 1234 1234" type="text" required maxlength="16" />
-        </div>
-        <div><!-- Card Holder -->
-            <label>Card Holder</label>
-            <input class="card-name" placeholder="FirstName LastName" type="text" required />
-        </div>
-          <div><!-- Date -->
-            <label>Exp. Date</label>
-            <input class="card-name" placeholder="10/25" type="text" maxlength="5" required />
-        </div>
-        <div><!-- Cvv -->
-            <label>CCV</label>
-            <input class="card-name" placeholder="123" type="text" maxlength="3" required />
-        </div>
-    </div>
+        <div class="wrapper">
+            <h1 class="title">Delivery Address</h1>
+            <form>
+                <div style="display: flex;flex-direction: column; text-align: center;">
+                    <label for="name">Name</label>
+                    <input required type="text" id="name" name="name" autocomplete="name" enterkeyhint="next">
 
-    <div >
-        <button class="button" onclick="alert('Thank you for your payment')">Pay</button>
-    </div>
-    
-    <!-- Cart menu, will hide and show whenever the cart button is pressed -->
-    <div class="cart-menu">
-        <h3 class="title">Shopping Cart</h3>
-        <div class="cart-item">
-            <img src="#" alt="Shopping cart item">
-            <p>Apples</p>
-            <p>$5.00</p>
-            <p>2 lbs.</p>
-            <div class="product-quantity-adjustment">
-                <i id="subtract-quantity" class="fa fa-minus" aria-hidden="true"></i>
-                <p id="quantity-amount">1</p>
-                <i id="add-quantity" class="fa fa-plus" aria-hidden="true"></i>
+                    <label for="street-address">Street address</label>
+                    <input type="text" id="street-address" name="street-address" autocomplete="street-address" required
+                        enterkeyhint="next"></input>
+
+
+                    <label for="postal-code">ZIP or postal code (optional)</label>
+                    <input class="postal-code" id="postal-code" name="postal-code" autocomplete="postal-code"
+                        enterkeyhint="next">
+
+                    <label for="city">City</label>
+                    <input required type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next">
+                </div>
+            </form>
+            <h2 class="title">Apply Discount Code</h2>
+            <input class="title" required type="text" id="discount code" name="discount code"
+                autocomplete="discount code" enterkeyhint="next">
+        </div>
+        <h2 class="title">Payment Details: </h2>
+        <div class="flex-container-hor">
+            <div><!-- Card Number -->
+                <label>Card Number</label>
+                <input class="card-number" placeholder="1234 1234 1234 1234" type="text" required maxlength="16" />
             </div>
-            <div id="checkout-total">
-                <p>Subtotal = cost</p>
-                <p>Weight = lbs</p>
-                <button type="submit" id="checkout-button">Checkout</button>
+            <div><!-- Card Holder -->
+                <label>Card Holder</label>
+                <input class="card-name" placeholder="FirstName LastName" type="text" required />
+            </div>
+            <div><!-- Date -->
+                <label>Exp. Date</label>
+                <input class="card-name" placeholder="10/25" type="text" maxlength="5" required />
+            </div>
+            <div><!-- Cvv -->
+                <label>CCV</label>
+                <input class="card-name" placeholder="123" type="text" maxlength="3" required />
             </div>
         </div>
-    </div>
+
+        <div>
+            <button class="button" onclick="alert('Thank you for your payment')">Pay</button>
+        </div>
+
+        <!-- Cart menu, will hide and show whenever the cart button is pressed -->
+        <div class="cart-menu">
+            <h3 class="title">Shopping Cart</h3>
+            <div class="cart-item">
+                <img src="#" alt="Shopping cart item">
+                <p>Apples</p>
+                <p>$5.00</p>
+                <p>2 lbs.</p>
+                <div class="product-quantity-adjustment">
+                    <i id="subtract-quantity" class="fa fa-minus" aria-hidden="true"></i>
+                    <p id="quantity-amount">1</p>
+                    <i id="add-quantity" class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+                <div id="checkout-total">
+                    <p>Subtotal = cost</p>
+                    <p>Weight = lbs</p>
+                    <button type="submit" id="checkout-button">Checkout</button>
+                </div>
+            </div>
+        </div>
 </body>
 
 <script src="navbar.js"></script>

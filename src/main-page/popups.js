@@ -14,7 +14,7 @@ function createProductInformationPopup() {
     if (productPopup !== null) {
         // blur all elements except the popup div
         manageBlurEffect(true);
-    
+
         // if the close button is pressed, remove the popup div element
         document.getElementById("popup-close-button").addEventListener("click", function () {
             productPopup.remove();
