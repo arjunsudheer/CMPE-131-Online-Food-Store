@@ -27,8 +27,8 @@ body {
     margin: 0;
 }
 
-/* Change the cursor to pointer when hovering over the cart icon and text */
-#cart-button:hover {
+/* Change the cursor to pointer when hovering over the cart icon and text, or the checkout button in the cart menu */
+#cart-button:hover, #checkout-button:hover {
     cursor: pointer;
 }
 
