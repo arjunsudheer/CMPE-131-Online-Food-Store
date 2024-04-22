@@ -6,22 +6,27 @@ h3 {
     margin-top: 35px;
     margin-bottom: 0px;
 }
+
 /* Removes margin and padding from paragraphs */
 p {
     margin-bottom: 5px;
     margin-top: 0px;
 }
+
 /* Displays the divs containing the username and password inputs as block */
 div {
     display: block;
     margin: 10px;
 }
-/* Align  */
+
+/* Align all items to the center */
 body {
     display: flex;
     vertical-align: middle;
     justify-content: center;
+    margin-top: 15px;
 }
+
 /* Displays a rounded box around the entire form and centers elements */
 #authentication-box {
     border: 1px solid black;
@@ -33,35 +38,42 @@ body {
     text-align: center;
     background-color: gainsboro;
 }
+
 /* Set the username and password labels to be left aligned */
 .authentication-input {
     text-align: center;
 }
+
 /* Set the password elements to display inline */
 #authentication-input {
     display: inline;
 }
+
 /* Changes the "Show/Hide Password" text to blue when hovering over it */
 #password-view:hover {
     color: blue;
 }
+
 /* Sets the button color to green, and the inner text to be white */
 .green-btn {
     background-color: rgb(70, 188, 78);
     padding-left: 20px;
     padding-right: 20px;
 }
+
 /* Display links as block elements and remove default link styling */
 a {
     display: block;
     text-decoration: none;
     color: black;
 }
+
 /* Align the back button toward the left */
 #back-btn {
     text-align: left;
     width: fit-content;
 }
+
 /* Add a underline style to the back button when hovering over it */
 #back-btn:hover {
     text-decoration: underline;

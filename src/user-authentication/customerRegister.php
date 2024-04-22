@@ -1,16 +1,22 @@
+<?php include("authentication_animation.html"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>OFS - Customer Registration</title>
     <link rel="stylesheet" href="authentication.css">
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-  <header class="top-bar">
-    <a href="/main-page/main-page.php">
-        <img src="mainLogo.jpg" style="width: 100px; height: auto;">
-    </a>
-  </header>
+    <header class="top-bar">
+        <a href="/main-page/main-page.php">
+            <img src="mainLogo.jpg" style="width: 100px; height: auto;">
+        </a>
+    </header>
     <div id="authentication-box">
         <h3>Customer Registration</h3>
         <p>Enter your information below:</p>
@@ -102,14 +108,17 @@
             <div class="authentication-input">
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password-input" placeholder="Enter your password" required autocomplete="off">
+            </div>
+            <div>
                 <input type="checkbox" id="password-view">Show Password
             </div>
             <!-- Registration Button -->
             <button type="submit" class="green-btn" id="registration-button">Sign Up</button>
         </form>
         <!-- Back Button -->
-        <a id="back-btn" href="pickEmployeeOrCustomer.html"><-- Back</a>
+        <a id="back-btn" href="customerLogin.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a>
     </div>
 </body>
 <script src="authentication.js"></script>
+
 </html>

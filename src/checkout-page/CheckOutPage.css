@@ -1,10 +1,12 @@
-h1{
+h1 {
     margin: 4px 2px;
-    left:100px;
+    left: 100px;
 }
+
 form {
     width: 90vw;
 }
+
 input {
     border: 1px solid;
     padding: 0.3em;
@@ -29,14 +31,17 @@ select {
 postalCode {
     width: 50%;
 }
-.flex-container-hor{
+
+.flex-container-hor {
     display: flex;
 }
-.flex-container-hor> div {
+
+.flex-container-hor>div {
     padding: 10px;
     font-size: 30px;
-  }
-.button{
+}
+
+.button {
     background-color: #04AA6D;
     border: none;
     padding: 15px 32px;
@@ -48,6 +53,7 @@ postalCode {
     cursor: pointer;
     border-radius: 10px;
 }
-.title{
+
+.title {
     margin: 4px 200px;
 }
