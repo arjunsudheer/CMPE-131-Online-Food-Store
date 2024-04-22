@@ -1,6 +1,9 @@
 <?php
-include("navbar.html");
-include("search-bar.html");
+
+use Arjunsudheer\Cmpe131OnlineFoodStore as current;
+
+include("../navbar/navbar.html");
+include("../search-bar/search-bar.html");
 include("add-products.php");
 ?>
 
@@ -51,7 +54,12 @@ include("add-products.php");
 
     <!-- Shows the product items -->
     <div id="product-item-view">
-        <?php addProductItems(); ?>
+        <?php
+        $products = new current\AddProductItems(4);
+        $products->openDatabaseConnection();
+        $products->addProductItems();
+        $products->closeDatabaseConnection();
+        ?>
     </div>
     <script src="main-page.js"></script>
     <script src="popups.js"></script>

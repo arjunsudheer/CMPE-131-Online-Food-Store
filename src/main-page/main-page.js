@@ -90,25 +90,24 @@ for (let i = 0; i < iconFilters.length; i++) {
             // icon-filter-active class not used for styling, used for quick access of active filters in toggleProductItemVisibility() function
             iconFilters[i].classList.remove("icon-filter-active");
         }
-        removeProductItems();
         toggleProductItemVisibility();
     });
 }
 
-// removes all existing product items
-function removeProductItems() {
+// removes all existing product items, and invokes invokeProductItemCreation() function for all active icon filters
+function toggleProductItemVisibility() {
+    // removes all existing product items
     let productRows = document.getElementsByClassName("product-item-row");
     while (productRows.length > 0) {
         productRows[productRows.length - 1].remove();
     }
-}
 
-// invokes invokeProductItemCreation() function for all active icon filters
-function toggleProductItemVisibility() {
     // keep track of the number of active filters returned
     let activeIconFilters = document.getElementsByClassName("icon-filter-active");
     // array for the filter strings based on the current active filters
     let productItemCategory = [];
+    // specify the searchValue string when looking for product items to add
+    productItemCategory.push(searchBar.value);
     // if no filters are selected, show all products
     if (activeIconFilters.length === 0) {
         activeIconFilters = iconFilters;
@@ -145,7 +144,13 @@ function invokeProductItemCreation(productFilter) {
 // updates the product items when the sort menu option is changed
 let sortMenu = document.getElementById("sort-menu");
 sortMenu.addEventListener("change", function () {
-    removeProductItems();
+    toggleProductItemVisibility();
+});
+
+// store the search bar element
+let searchBar = document.getElementById("product-search-bar");
+// update the products shown based on the search, updates whenever a key is pressed
+searchBar.addEventListener("keyup", function() {
     toggleProductItemVisibility();
 });
 
@@ -153,5 +158,6 @@ sortMenu.addEventListener("change", function () {
 function updateNumberOfResults() {
     document.getElementById("number-of-results").innerHTML = document.getElementsByClassName("product-item").length + " results";
 }
+
 updateNumberOfResults();
 refreshPopupEventListeners();
