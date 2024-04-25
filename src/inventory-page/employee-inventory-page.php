@@ -16,9 +16,9 @@
         <?php echo $tester; ?>
         <div style="padding-left: 11%">
             <form method="post">
-                <input type="submit" name="all" value="ALL" />
-                <input type="submit" name="fruit" value="FRUIT" />
-                <input type="submit" name="vegetable" value="VEGETABLE" />
+                <input type="submit" class="filter" name="all" value="ALL" />
+                <input type="submit" class="filter" name="fruit" value="FRUIT" />
+                <input type="submit" class="filter" name="vegetable" value="VEGETABLE" />
             </form>
         </div>
         <div style="padding-left: 11%">
@@ -48,7 +48,7 @@
                 <input type="submit" style="background-color: white" name="add" value="Add"/>
             </form>
         </div>
-        <div style="padding-left: 11%">
+        <div class="item-holder">
             <?php echo $allItems; ?>
         </div>
         <input type='hidden' name='sort' value='<?php echo $sort; ?>'/>
