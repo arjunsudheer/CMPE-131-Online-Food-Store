@@ -1,0 +1,56 @@
+/* styles.css */
+.container {
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: 20%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #32cd30;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #76b947;
+}
+
+.introMessage {
+    margin-bottom: 10px;
+    /* Add some spacing between the message and buttons */
+    text-align: center;
+    /* Center align the message text */
+}
+
+.top-bar {
+    background-color: #AAAA;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,172 @@
+/* Displays the icon filters and the results/sort-by divs as flex */
+.main-page-box {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Space the icon filters evenly */
+#icon-filters-box {
+    justify-content: space-evenly;
+}
+
+/* Make the icon filters have a round-border */
+.icon-filters {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* Set the cursor to pointer when hovering over the icon-filters */
+.icon-filters:hover {
+    cursor: pointer;
+}
+
+/* Make the number of results float to the left, and the sort-by menu float to the right */
+#number-of-results {
+    float: left;
+    font-size: large;
+    margin-left: 10%;
+}
+
+.sort-by {
+    float: right;
+    margin-right: 10%;
+}
+
+#sort-menu {
+    background-color: lightgray;
+}
+
+/* Maximize the space between the elements */
+#results-and-sort {
+    justify-content: space-between;
+}
+
+/* Sets the size of the product items view container */
+#product-item-view {
+    overflow: scroll;
+    height: 65vh;
+}
+
+/* Centers the table */
+.product-item-row {
+    justify-content: space-evenly;
+    width: 100%;
+    display: flex;
+}
+
+/* Makes all the product items centered and constant size */
+.product-item {
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    justify-content: space-evenly;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 15%;
+}
+
+/* Makes the price and add button fit on the left and right side toward the bottom */
+.price-and-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+/* Sets the button size and color */
+.add-btn {
+    height: fit-content;
+    background-color: black;
+    color: white;
+}
+
+/* Underlines the "Brand:" text for each product item */
+.brand-name {
+    text-decoration: underline;
+}
+
+/* Popup Menu Styling */
+/* Formats the product-information popup box */
+.product-information-popup {
+    /* filter: none; */
+    box-shadow: 1px 2px lightgray;
+    background-color: lightgray;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 35%;
+    text-align: center;
+    border: 1px solid black;
+    justify-content: space-evenly;
+    padding: 20px;
+    z-index: 10;
+    animation: move-popup-to-middle 1s ease;
+}
+
+/* Show the image on the left side */
+#product-image {
+    float: left;
+}
+
+/* Shows the product information on the right side */
+#product-information {
+    float: right;
+}
+
+/* Places the button in the top right of the popup box */
+#popup-close-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    flex-basis: 100%;
+}
+
+/* Changes the cursor to pointer when hovering over the close button */
+#popup-close-button:hover {
+    cursor: pointer;
+}
+
+/* Underlines the labels for the popup information box */
+.popup-product-label {
+    text-decoration: underline;
+}
+
+/* Animates the popup box to move from the bottom to the middle of the screen */
+@keyframes move-popup-to-middle {
+    from {
+        top: 100%;
+    }
+
+    to {
+        top: 35%;
+    }
+}
+
+/* Add to cart success popup styling */
+/* Sets the add to cart success popup background to green, adds a border, and centers text */
+#add-to-cart-success-popup {
+    background-color: lightgreen;
+    text-align: center;
+    border: 1px solid black;
+    position: absolute;
+    left: 45%;
+    top: 70%;
+    padding: 5px;
+    z-index: 9;
+    animation: add-to-cart-success 0.3s ease;
+}
+
+/* Animates the popup message to move up from the bottom of the screen */
+@keyframes add-to-cart-success {
+    from {
+        top: 100%;
+    }
+
+    to {
+        top: 70%;
+    }
+}

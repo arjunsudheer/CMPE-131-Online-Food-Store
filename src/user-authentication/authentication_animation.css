@@ -1,0 +1,50 @@
+body {
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(119, 246, 87));
+    margin: 0;
+    padding: 0;
+}
+
+#road-rectangle {
+    z-index: 0;
+    position: absolute;
+    bottom: 8%;
+    width: 100%;
+    height: 70px;
+    margin: 0%;
+    background-color: black
+}
+
+#road-dashed-line {
+    z-index: 0;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 72px;
+    margin: 0%;
+    background-color: black;
+    border-top: dashed white 3px;
+}
+
+#rectangle {
+    height: 150px;
+    width: 200px;
+    position: absolute;
+    bottom: 75px;
+    left: 0px;
+    animation-name: drive;
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    background-image: url("truck.png");
+    background-size: cover;
+}
+
+@keyframes drive {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
