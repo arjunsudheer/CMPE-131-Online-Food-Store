@@ -73,13 +73,13 @@
             if (isset($_POST['az']))
             {
                 $type = $_POST['filter'];
-                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
                 $sort = "az";
             }
             else if (isset($_POST['za']))
             {
                 $type = $_POST['filter'];
-                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product DESC";
+                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand DESC";
                 $sort = "za";
             }
             else if (isset($_POST['inStock']))
@@ -121,7 +121,7 @@
                 $allItems = $allItems . 
                 "<div class='item'>
                     <div class='top-item'>
-                        <img src='../../OFS_Binary/" . $row["Image"] . "' class='image'>
+                        <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
                         <div class='itemDesc1'>
                             <p>
                                 Type: " . $row["Type"] . " <br>
@@ -184,7 +184,7 @@
                     $allItems = $allItems . 
                     "<div class='item'>
                         <div class='top-item'>
-                            <img src='../../OFS_Binary/" . $row["Image"] . "' class='image'>
+                            <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
                             <div class='itemDesc1'>
                                 <p>
                                     Type: " . $row["Type"] . " <br>
@@ -248,7 +248,7 @@
                     $allItems = $allItems . 
                     "<div class='item'>
                         <div class='top-item'>
-                            <img src='../../OFS_Binary/" . $row["Image"] . "' class='image'>
+                            <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
                             <div class='itemDesc1'>
                                 <p>
                                     Type: " . $row["Type"] . " <br>
@@ -269,6 +269,7 @@
                                     </div>
                                     <form method='post'>
                                         <input type='text' class='changer' name='price' placeholder='Enter' />
+                                        <br>
                                         <input type='submit' class='editInputs' value='Submit' />
                                         <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
                                     </form>
@@ -279,6 +280,7 @@
                                     </div>
                                     <form method='post'>
                                         <input type='text' class='changer' name='weight' placeholder='Enter' />
+                                        <br>
                                         <input type='submit' class='editInputs' value='Submit' />
                                         <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
                                     </form>
@@ -289,6 +291,7 @@
                                     </div>
                                     <form method='post'>
                                         <input type='text' class='changer' name='quant' placeholder='Enter' />
+                                        <br>
                                         <input type='submit' class='editInputs' value='Submit' />
                                         <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
                                     </form>
