@@ -1,112 +1,130 @@
-.item {
+
+.item
+{
     background-color: rgb(19, 43, 24);
     color: white;
-    display: inline-block;
-    width: 650px;
-    max-width: 650px;
-    height: 100px;
-    max-height: 100px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    display: flex;
+    width: 375px;
+    max-width: 375px;
+    height: 175px;
+    max-height: 175px;
     margin-bottom: 10px;
     margin-left: 5px;
     border-radius: 10px;
-}
-
-.item .itemLeft {
     float: left;
     display: flex;
+    flex-direction: column;
 }
 
-.item .itemRight {
-    margin-left: 20%;
+.top-item
+{
+    display: flex;
+    position: relative;
 }
 
-.image {
+.top-item .image
+{
     height: 75px;
-    margin: auto;
-    margin-left: 5%;
+    padding: 12.5px 10px;
+    border-radius: 20px;
 }
 
-.itemDesc1 {
-    margin-left: 3%;
+.top-item .remove
+{
+    position: absolute;
+    top: 0px;
+    left: 309px;
+    float: right;
+    background-color: white;
+    width: 66px;
+    border-radius: 10px;
 }
 
-.type, .product, .brand, .priceDesc, .weightDesc, .quantityDesc {
+.item .itemDesc1
+{
+    width: 200px;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
+
+.item .itemDesc2
+{
+    width: 350px;
+    padding-left: 12.5px;
+}
+
+.edit
+{
     display: flex;
-    text-wrap: nowrap;
+    margin-top: -10px;
 }
 
-.product, .brand {
-    margin-top: -18%;
+.price, .weight, .quantity 
+{
+    padding-right: 25px;
 }
 
-.price {
-    margin-left: 10%;
+.priceDesc, .weightDesc, .quantityDesc
+{
+    margin-bottom: -10px;
 }
 
-.weight {
-    margin-right: 2.5%;
+.edit .changer
+{
+    width: 49px;
 }
 
-.itemDesc2 {
-    display: flex;
+.editInputs
+{
+    background-color: white;
+    width: 58px;
 }
-
-.changeItem {
-    display: flex;
-}
-
-.changer {
-    width: 30%;
-}
-
+  
 /* The container <div> - needed to position the dropdown content */
-.dropdown {
+.dropdown 
+{
     position: relative;
     display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.dropdown-content 
+{
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 0;
 }
 
-.dropdown-content input {
+.dropdown-content input
+{
     width: 100px;
 }
-
+  
 /* Buttons inside the dropdown */
-.dropdown-content input {
+.dropdown-content input 
+{
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
+  
 /* Change color of dropdown links on hover */
-.dropdown-content input:hover {
-    background-color: #ddd;
-}
+.dropdown-content input:hover {background-color: #ddd;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.editInputs {
-    background-color: white;
-}
-
-.adder {
+.adder
+{
     background-color: rgb(19, 43, 24);
     color: white;
     display: inline-block;
@@ -120,7 +138,8 @@
     padding: 15px 15px;
 }
 
-.adder input {
+.adder input
+{ 
     padding: 1px;
     top: 50%;
     left: 50%;
