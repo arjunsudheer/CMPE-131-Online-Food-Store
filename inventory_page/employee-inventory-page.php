@@ -1,11 +1,11 @@
-<?php include("../navbar/navbar.html"); ?>
+<?php include("../navbar.html"); ?>
 <style>
 <?php include 'employee-inventory-page.css'; ?>
 </style>
 
 <!DOCTYPE HTML>
 <html lang="en">
-    <link rel="stylesheet" href="../navbar/navbar.css">
+    <link rel="stylesheet" href="../navbar.css">
     <?php include 'inventory-page-helper.php'; ?>
     
     <body>
@@ -45,7 +45,7 @@
                 <input type="text" name="addPrice" placeholder="Enter price"/>
                 <input type="text" name="addWeight" placeholder="Enter weight"/>
                 <input type="text" name="addQuantity" placeholder="Enter quantity"/>
-                <input type="submit" class="editInputs" name="add" value="Add"/>
+                <input type="submit" style="background-color: white" name="add" value="Add"/>
             </form>
         </div>
         <div style="padding-left: 11%">

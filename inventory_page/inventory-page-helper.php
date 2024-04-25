@@ -120,65 +120,50 @@
                 $counter = $counter + 1;
                 $allItems = $allItems . 
                 "<div class='item'>
-                    <div class='itemLeft'>
-                        <img src='#' class='image'>
-                        <div class='itemDesc1'>
-                            <div class='type'>
-                                <p>Type:&nbsp</p>
-                                <p id='type'>" . $row["Type"] . "</p>
-                            </div>
-                            <div class ='product'>
-                                <p>Product:&nbsp</p>
-                                <p id='product'>" . $row["Product"] . "</p>
-                            </div>
-                            <div class='brand'>
-                                <p>Brand:&nbsp</p>
-                                <p id='brand'>" . $row["Brand"] . "</p>
-                            </div>
-                        </div>
+                    <img src='../../OFSbinary/lebron.jpg' class='image'>
+                    <div class='itemDesc1'>
+                        <p>
+                            Type: " . $row["Type"] . " <br>
+                            Product: " . $row["Product"] . " <br>
+                            Brand: " . $row["Brand"] . "
+                        </p>
                     </div>
-                    <div class='itemRight'>
-                        <div class='itemDesc2'>
+                    <div class='itemDesc2'>
+                        <form method='post'>
+                            <input type='submit' class='remove' name='del' value='Remove' />
+                            <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
+                        </form>
+                        <div class='edit'>
                             <div class='price'>
                                 <div class='priceDesc'>
-                                    <p>Price:&nbsp</p>
-                                    <p id='price'>" . $row["Price"] . "</p>
+                                    <p>Price: " . $row["Price"] . "</p>
                                 </div>
                                 <form method='post'>
-                                    <input type='text' class='changer' name='price' placeholder='Enter new price' />
-                                    <br>
+                                    <input type='text' class='changer' name='price' placeholder='Enter' />
                                     <input type='submit' class='editInputs' value='Submit' />
                                     <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
                                 </form>
                             </div>
                             <div class='weight'>
                                 <div class='weightDesc'>
-                                    <p>Weight:&nbsp</p>
-                                    <p id='weight'>" . $row["Weight"] . "</p>
+                                    <p>Weight: " . $row["Weight"] . "</p>
                                 </div>
                                 <form method='post'>
-                                    <input type='text' class='changer' name='weight' placeholder='Enter new weight' />
-                                    <br>
+                                    <input type='text' class='changer' name='weight' placeholder='Enter' />
                                     <input type='submit' class='editInputs' value='Submit' />
                                     <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
                                 </form>
                             </div>
                             <div class='quantity'>
                                 <div class='quantityDesc'>
-                                    <p>Quantity:&nbsp</p>
-                                    <p id='quantity'>" . $row["numStock"] . "</p>
+                                    <p>Quantity: " . $row["numStock"] . "</p>
                                 </div>
                                 <form method='post'>
-                                    <input type='text' class='changer' name='quant' placeholder='Enter new quantity' />
-                                    <br>
+                                    <input type='text' class='changer' name='quant' placeholder='Enter' />
                                     <input type='submit' class='editInputs' value='Submit' />
                                     <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
                                 </form>
                             </div>
-                            <form method='post'>
-                                <input type='submit' class='editInputs' name='del' value='Remove' />
-                                <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
-                            </form>
                         </div>
                     </div>
                 </div>";
