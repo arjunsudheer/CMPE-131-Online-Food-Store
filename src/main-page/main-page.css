@@ -51,7 +51,7 @@
     height: 65vh;
 }
 
-/* Centers the table */
+/* Centers the product items on each row */
 .product-item-row {
     justify-content: space-evenly;
     width: 100%;
@@ -68,6 +68,12 @@
     border: 1px solid black;
     border-radius: 10px;
     width: 15%;
+}
+
+/* Sets the images to a smaller constant size */
+.product-image {
+    width: 50px;
+    height: 50px;
 }
 
 /* Makes the price and add button fit on the left and right side toward the bottom */
@@ -107,9 +113,13 @@
     animation: move-popup-to-middle 1s ease;
 }
 
-/* Show the image on the left side */
-#product-image {
+/* Show the image centered on the left side and sets the images in the popups to a larger constant size */
+.product-image-popup {
     float: left;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100px;
+    height: 100px;
 }
 
 /* Shows the product information on the right side */
