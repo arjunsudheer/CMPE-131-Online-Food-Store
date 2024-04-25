@@ -3,73 +3,83 @@
 {
     background-color: rgb(19, 43, 24);
     color: white;
-    display: inline-block;
-    width: 650px;
-    max-width: 650px;
-    height: 100px;
-    max-height: 100px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    display: flex;
+    width: 375px;
+    max-width: 375px;
+    height: 175px;
+    max-height: 175px;
     margin-bottom: 10px;
     margin-left: 5px;
     border-radius: 10px;
-}
-
-.item .itemLeft
-{
     float: left;
     display: flex;
+    flex-direction: column;
 }
 
-.item .itemRight
+.top-item
 {
-    margin-left: 20%;
+    display: flex;
+    position: relative;
 }
 
-.image
+.top-item .image
 {
     height: 75px;
-    margin: auto;
-    margin-left: 5%;
+    padding: 12.5px 10px;
+    border-radius: 20px;
 }
 
-.itemDesc1
+.top-item .remove
 {
-    margin-left: 3%;
+    position: absolute;
+    top: 0px;
+    left: 309px;
+    float: right;
+    background-color: white;
+    width: 66px;
+    border-radius: 10px;
 }
 
-.type, .product, .brand, .priceDesc, .weightDesc, .quantityDesc
+.item .itemDesc1
 {
-    display: flex;
-    text-wrap: nowrap;
+    width: 200px;
+    word-wrap: break-word;
+    margin-right: 10px;
 }
 
-.product, .brand
+.item .itemDesc2
 {
-    margin-top: -18%;
+    width: 350px;
+    padding-left: 12.5px;
 }
 
-.price 
-{
-    margin-left: 10%;
-}
-
-.weight 
-{
-    margin-right: 2.5%;
-}
-
-.itemDesc2
+.edit
 {
     display: flex;
+    margin-top: -10px;
 }
 
-.changeItem
+.price, .weight, .quantity 
 {
-    display: flex;
+    padding-right: 25px;
 }
 
-.changer
+.priceDesc, .weightDesc, .quantityDesc
 {
-    width: 30%;
+    margin-bottom: -10px;
+}
+
+.edit .changer
+{
+    width: 49px;
+}
+
+.editInputs
+{
+    background-color: white;
+    width: 58px;
 }
   
 /* The container <div> - needed to position the dropdown content */
@@ -112,11 +122,6 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-.editInputs
-{
-    background-color: white;
-}
 
 .adder
 {
