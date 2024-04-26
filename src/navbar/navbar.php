@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
     <!-- Load an icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -45,15 +45,15 @@
                 <p id="quantity-amount">1</p>
                 <i id="add-quantity" class="fa fa-plus" aria-hidden="true"></i>
             </div>
-            <div id="checkout-total">
-                <p>Subtotal = cost</p>
-                <p>Weight = lbs</p>
-                <button type="submit" id="checkout-button">Checkout</button>
-            </div>
+        </div>
+        <div id="checkout-total">
+            <p>Subtotal = cost</p>
+            <p>Weight = lbs</p>
+            <button type="submit" id="checkout-button">Checkout</button>
         </div>
     </div>
 </body>
 
-<script src="navbar.js"></script>
+<script src="../navbar/navbar.css"></script>
 
 </html>
