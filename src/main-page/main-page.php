@@ -2,7 +2,7 @@
 
 use Arjunsudheer\Cmpe131OnlineFoodStore as current;
 
-include("../navbar/navbar.html");
+include("../navbar/navbar.php");
 include("../search-bar/search-bar.html");
 include("add-products.php");
 ?>
