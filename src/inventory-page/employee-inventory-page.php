@@ -1,4 +1,4 @@
-<?php include("../navbar/navbar.html"); ?>
+<?php include("../navbar/navbar.php"); ?>
 <style>
 <?php include 'employee-inventory-page.css'; ?>
 </style>
