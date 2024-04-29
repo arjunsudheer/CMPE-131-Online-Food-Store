@@ -100,14 +100,15 @@ class AddProductItems
             $product_name = $row["Product"];
             $product_brand = $row["Brand"];
             $product_price = $row["Price"];
+            $product_image = "../../OFS_Binary/" . $row["Image"];
             echo ("
-                <div class='product-item $product_type'>
+                <div class=\"product-item $product_type\">
                     <p>$product_name</p>
-                    <p><span class='brand-name'>Brand:</span> $product_brand</p>
-                    <img src='' alt='product-item'>
-                    <div class='price-and-add'>
+                    <p><span class=\"brand-name\">Brand:</span> $product_brand</p>
+                    <img src=\"$product_image\" alt=\"product-item\" class=\"product-image\">
+                    <div class=\"price-and-add\">
                         <p>$$product_price</p>
-                        <button class='add-btn'>Add</button>
+                        <button class=\"add-btn\">Add</button>
                     </div>
                 </div>
             ");
@@ -136,3 +137,4 @@ class AddProductItems
         }
     }
 }
+?>

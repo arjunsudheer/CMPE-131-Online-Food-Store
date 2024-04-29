@@ -34,10 +34,11 @@ function createProductInformationPopup($productPopup)
         $product_price = $row["Price"];
         $product_weight = $row["Weight"];
         $product_quantity = $row["inStock"];
+        $product_image = "../../OFS_Binary/" . $row["Image"];
         echo ("
                 <div id=\"product-information-popup-animate\" class=\"main-page-box product-information-popup\">
                     <button id=\"popup-close-button\">Close <i class=\"fa fa-window-close-o\" aria-hidden=\"true\"></i></button>
-                    <img src=\"#\" alt=\"product-image\" id=\"product-image\">
+                    <img src=\"$product_image\" alt=\"product-image\" class=\"product-image-popup\">
                     <div id=\"product-information\">
                         <p class=\"popup-product-info\">$product_name ($product_brand)</p>
                         <p class=\"popup-product-info\"><span class=\"popup-product-label\">Type:</span> $product_type</p>
@@ -62,3 +63,4 @@ function createAddToCartPopup()
                 </div>
             ");
 }
+?>
