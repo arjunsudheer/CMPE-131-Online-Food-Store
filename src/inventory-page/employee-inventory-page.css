@@ -1,13 +1,28 @@
 
+body
+{
+    overflow-y: hidden;
+}
+
+.input-btn, .filter, .remove, .editInputs
+{
+    cursor: pointer;
+}
+
+.test
+{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .filter
 {
     background-color: whitesmoke;
     border-radius: 4px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-style: solid;
     border-color: black;
     border-width: 2px;
     font-weight: 100;
+    font-size: 12px;
     height: 35px;
 }
 
@@ -16,22 +31,29 @@
     background-color: rgb(227, 243, 226);
 }
 
+.part2
+{
+    padding-left: 2%;
+    display: flex; 
+    justify-content: space-between;
+}
+
 .item-holder
 {
     padding-left: 20px;
-    overflow: auto;
-    height: 71.5vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 82vh;
 }
 
 .item
 {
     background-color: rgb(19, 43, 24);
     color: white;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
     display: flex;
-    width: 375px;
-    max-width: 375px;
+    width: 325px;
+    max-width: 325px;
     height: 175px;
     max-height: 175px;
     margin-bottom: 10px;
@@ -40,6 +62,7 @@
     float: left;
     display: flex;
     flex-direction: column;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .top-item
@@ -59,12 +82,11 @@
 {
     position: absolute;
     top: 0px;
-    left: 309px;
+    left: 259px;
     float: right;
     background-color: white;
     width: 66px;
     border-radius: 4px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -92,7 +114,7 @@
 
 .price, .weight, .quantity 
 {
-    padding-right: 25px;
+    padding-right: 20px;
 }
 
 .priceDesc, .weightDesc, .quantityDesc
@@ -114,6 +136,7 @@
 /* The container <div> - needed to position the dropdown content */
 .dropdown 
 {
+    margin-left: 100px;
     position: relative;
     display: inline-block;
 }
@@ -131,7 +154,7 @@
 
 .dropdown-content input
 {
-    width: 100px;
+    width: 88px;
 }
   
 /* Buttons inside the dropdown */
@@ -174,3 +197,88 @@
     left: 50%;
     width: 100px;
 }
+
+
+/*----------------*/
+
+.overlay 
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
+
+.overlay:target 
+{
+    visibility: visible;
+    display: block;
+    opacity: 1;
+}
+
+.popup 
+{
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 50vw;
+    height: 55vh;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.button-popup
+{
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+    padding: 2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    background-color: whitesmoke;
+    font-size: 14px;
+}
+
+.button-popup:hover
+{
+    background-color: rgb(227, 243, 226);
+}
+
+.popup .close 
+{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover 
+{
+    color: orange;
+}
+
+.popup .content 
+{
+    max-height: 70%;
+    overflow: auto;
+}
+
+.add-item-gen
+{
+    display: flex;
+    padding-left: 4px;
+    padding-bottom: 12px;
+}
+

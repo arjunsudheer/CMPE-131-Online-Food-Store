@@ -1,5 +1,5 @@
 
-function showBtnFunc(section)
+function showBtnFunc()
 {
     window.alert("unable to add");
 }

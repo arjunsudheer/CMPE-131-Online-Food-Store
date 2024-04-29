@@ -1,314 +1,279 @@
 
-<script src="employee-inventory-page.js"></script>
-
 <?php 
-        $counter = 0;
-        $allItems = "";
-        $tester = "";
-        $type = "";
-        $counterString = "";
-        $useSearch = false;
-        $searchVal = "";
-        $sort = "";
-        $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
-        $inStock = false;
-        $initial = false;
+    $counter = 0;
+    $allItems = "";
+    $tester = "";
+    $type = "";
+    $counterString = "";
+    $useSearch = false;
+    $searchVal = "";
+    $sort = "A-Z";
+    $specFilter = false;
+    $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
+    $inStock = false;
+    $initial = false;
 
-        if (isset($_POST['searchbar']))
+    //print_r($_POST);
+
+    if (isset($_POST['searchbar']))
+    {
+        $searchVal = $_POST['searchbar'];
+        $useSearch = true;
+    }
+
+    if (isset($_POST['add']))
+    {
+        if ($_POST['addType'] == 1)
+            $addType = "Fruits";
+        else 
+            $addType = "Vegetables";
+        if ($_POST['addImage'] != "" && $_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
         {
-            $searchVal = $_POST['searchbar'];
-            $useSearch = true;
+            if ($_POST['addQuantity'] >= 1)
+                $inStock = true;
+            $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
+            $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
+            "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
         }
-
-        if (isset($_POST['add']))
+        else 
         {
-            if ($_POST['addType'] == 1)
-                $addType = "Fruits";
-            else 
-                $addType = "Vegetables";
-            if ($_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
-            {
-                if ($_POST['addQuantity'] >= 1)
-                    $inStock = true;
-                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
-                $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "');" . 
-                "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
-            }
-            else 
-            {
-                echo "
-                    <script type='text/javascript'> 
-                            alert('unable to add'); 
-                    </script>
-                    ";
-            }
+            echo "
+                <script type='text/javascript'> 
+                        alert('unable to add'); 
+                </script>
+                ";
         }
+    }
 
-        if (isset($_POST['del']))
+    if (isset($_POST['del']) || isset($_POST['price']) || isset($_POST['weight']) || isset($_POST['quant']))
+    {
+        checkEdits($_POST);
+    }
+
+    function throwError()
+    {
+        echo "
+                <script type='text/javascript'> 
+                        alert('unable to edit'); 
+                </script>
+                ";
+    }
+
+    function checkEdits($request)
+    {
+        global $type, $sortDB;
+
+        $type = "all";
+
+        if (isset($request['del']))
         {
-            $type = "all";
-            $sortDB = "DELETE FROM items WHERE Brand='" . $_POST['delVal'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+            $sortDB = "DELETE FROM items WHERE Brand ='" . $_POST['delVal'] . "';" 
+            . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+            return;
         }
-
-        if (isset($_POST['price']))
+    
+        else if (isset($request['price']))
         {
-            $type = "all";
-            $sortDB = "UPDATE items SET Price= '" . $_POST['price'] . "' WHERE Brand='" . $_POST['newPrice'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
-        }
-
-        else if (isset($_POST['weight']))
-        {
-            $type = "all";
-            $sortDB = "UPDATE items SET Weight= '" . $_POST['weight'] . "' WHERE Brand='" . $_POST['newWeight'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
-        }
-
-        else if (isset($_POST['quant']))
-        {
-            $type = "all";
-            $sortDB = "UPDATE items SET numStock= '" . $_POST['quant'] . "' WHERE Brand='" . $_POST['newQuant'] . "';" . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
-        }
-
-        if (isset($_POST['az']) || isset($_POST['za']) || isset($_POST['inStock']))
-        {
-            if (isset($_POST['az']))
-            {
-                $type = $_POST['filter'];
-                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
-                $sort = "az";
-            }
-            else if (isset($_POST['za']))
-            {
-                $type = $_POST['filter'];
-                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand DESC";
-                $sort = "za";
-            }
-            else if (isset($_POST['inStock']))
-            {
-                $type = $_POST['filter'];
-                $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, inStock";
-                $sort = "inStock";
-            }
-        }
-
-        // Setting up connection with database 
-        $connection = mysqli_connect("localhost", "root", "", "ofs"); 
-
-        // Check connection 
-        if (mysqli_connect_errno()) 
-        { 
-            echo "Database connection failed."; 
-        } 
-
-        // Execute the query and store the result set 
-        mysqli_multi_query($connection, $sortDB);
-
-        if (mysqli_more_results($connection))
-        {
-            mysqli_next_result($connection);
-        }
-
-        $result = mysqli_store_result($connection);
-
-        if (isset($_POST['all']) || $type == "all" || $useSearch || (!isset($_POST['fruit']) && !isset($_POST['vegetable']))) { 
-            $type = "all";
-            while ($row = mysqli_fetch_array($result)) {
-                if ($useSearch)
+            if (is_double($request['price']))
+                if ($request['price'] > 0)
                 {
-                    if ($row["Product"] != $searchVal)
-                        continue;
+                    $sortDB = "UPDATE items SET Price = '" . $_POST['price'] . "' WHERE Brand = '" . $_POST['newPrice'] . "';" 
+                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    return;
                 }
-                $counter = $counter + 1;
-                $allItems = $allItems . 
-                "<div class='item'>
-                    <div class='top-item'>
-                        <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
-                        <div class='itemDesc1'>
-                            <p>
-                                Type: " . $row["Type"] . " <br>
-                                Product: " . $row["Product"] . " <br>
-                                Brand: " . $row["Brand"] . "
-                            </p>
+        }
+    
+        else if (isset($request['weight']))
+        {
+            if (is_double((double)$request['weight']))
+                if ((double)$request['weight'] > 0)
+                {
+                    $sortDB = "UPDATE items SET Weight = '" . $_POST['weight'] . "' WHERE Brand = '" . $_POST['newWeight'] . "';" 
+                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    return;
+                }
+        }
+    
+        else if (isset($request['quant']))
+        {
+            if (is_int((int)$request['quant']) && fmod((double)$request['quant'], 1) == 0)
+            {
+                if ((int)$request['quant'] > 0)
+                {
+                    $sortDB = "UPDATE items SET numStock = '" . $_POST['quant'] . "', inStock = '1' WHERE Brand = '" . $_POST['newQuant'] . "';" 
+                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    return;
+                }
+                else if ($request['quant'] == 0)
+                {
+                    $sortDB = "UPDATE items SET numStock = '0', inStock = '0' WHERE Brand = '" . $_POST['newQuant'] . "';" 
+                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    return;
+                }
+            }
+        }
+
+        throwError();
+    }
+
+    if (isset($_POST['az']) || isset($_POST['za']) || isset($_POST['inStock']))
+    {
+        checkFilter($_POST);
+    }
+
+    // Setting up connection with database 
+    $connection = mysqli_connect("localhost", "root", "", "ofs"); 
+
+    // Check connection 
+    if (mysqli_connect_errno()) 
+    { 
+        echo "Database connection failed."; 
+    } 
+
+    // Execute the query and store the result set 
+    mysqli_multi_query($connection, $sortDB);
+
+    if (mysqli_more_results($connection))
+    {
+        mysqli_next_result($connection);
+    }
+
+    $result = mysqli_store_result($connection);
+
+    if (isset($_POST['all']) || $type == "all" || $useSearch) 
+        $type = "all";
+
+    else if (isset($_POST['fruit']) || $type == "fruit")
+    {
+        $type = "fruit";
+        $specFilter = true;
+    }
+
+    else if (isset($_POST['vegetable']) || $type == "vegetable")
+    {
+        $type = "vegetable";
+        $specFilter = true;
+    }
+
+    addItems($_POST, $result, $type, $specFilter);
+
+    function checkFilter($request)
+    {
+        global $type, $sortDB, $sort;
+        
+        $type = $request['filter'];
+        if (isset($request['az']))
+        {
+            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
+            $sort = "A-Z";
+        }
+        else if (isset($_POST['za']))
+        {
+            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand DESC";
+            $sort = "Z-A";
+        }
+        else if (isset($_POST['inStock']))
+        {
+            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, inStock";
+            $sort = "In Stock";
+        }
+    }
+
+    function AddItems($request, $result, $type, $specFilter)
+    {
+        global $counter, $allItems, $useSearch;
+
+        if ($useSearch)
+            $type = "all";
+
+        while ($row = mysqli_fetch_array($result)) 
+        {
+            if ($useSearch)
+            {
+                if ($row["Product"] != $searchVal)
+                    continue;
+            }
+            if ($specFilter)
+            {
+                if ($type == "fruit")
+                    if ($row["Type"] != "Fruits")
+                        continue;
+                else if ($type == "vegetable")
+                    if ($row["Type"] != "Vegetables")
+                        continue;
+            }
+
+            $stockStatus = "";
+            if ($row['inStock'] == 0)
+            {
+                $stockStatus = "Sold Out!";
+            }
+
+            $counter = $counter + 1;
+            $allItems = $allItems . 
+            "<div class='item'>
+                <div class='top-item'>
+                    <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
+                    <div class='itemDesc1'>
+                        <p>
+                            Type: " . $row["Type"] . " <br>
+                            Product: " . $row["Product"] . " <br>
+                            Brand: " . $row["Brand"] . "
+                        </p>
+                        <form method='post'>
+                            <label for='del' value=''>" . $stockStatus . "</label>
+                            <input type='submit' class='remove' name='del' value='Remove' />
+                            <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
+                        </form>
+                    </div>
+                </div>
+                <div class='itemDesc2'>
+                    <div class='edit'>
+                        <div class='price'>
+                            <div class='priceDesc'>
+                                <p>Price: " . $row["Price"] . "</p>
+                            </div>
                             <form method='post'>
-                                <input type='submit' class='remove' name='del' value='Remove' />
-                                <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
+                                <input type='text' class='changer' name='price' placeholder='Enter' />
+                                <br>
+                                <input type='submit' class='editInputs' value='Submit' />
+                                <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
+                            </form>
+                        </div>
+                        <div class='weight'>
+                            <div class='weightDesc'>
+                                <p>Weight: " . $row["Weight"] . "</p>
+                            </div>
+                            <form method='post'>
+                                <input type='text' class='changer' name='weight' placeholder='Enter' />
+                                <br>
+                                <input type='submit' class='editInputs' value='Submit' />
+                                <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
+                            </form>
+                        </div>
+                        <div class='quantity'>
+                            <div class='quantityDesc'>
+                                <p>Quantity: " . $row["numStock"] . "</p>
+                            </div>
+                            <form method='post'>
+                                <input type='text' class='changer' name='quant' placeholder='Enter' />
+                                <br>
+                                <input type='submit' class='editInputs' value='Submit' />
+                                <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
                             </form>
                         </div>
                     </div>
-                    <div class='itemDesc2'>
-                        <div class='edit'>
-                            <div class='price'>
-                                <div class='priceDesc'>
-                                    <p>Price: " . $row["Price"] . "</p>
-                                </div>
-                                <form method='post'>
-                                    <input type='text' class='changer' name='price' placeholder='Enter' />
-                                    <br>
-                                    <input type='submit' class='editInputs' value='Submit' />
-                                    <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
-                                </form>
-                            </div>
-                            <div class='weight'>
-                                <div class='weightDesc'>
-                                    <p>Weight: " . $row["Weight"] . "</p>
-                                </div>
-                                <form method='post'>
-                                    <input type='text' class='changer' name='weight' placeholder='Enter' />
-                                    <br>
-                                    <input type='submit' class='editInputs' value='Submit' />
-                                    <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
-                                </form>
-                            </div>
-                            <div class='quantity'>
-                                <div class='quantityDesc'>
-                                    <p>Quantity: " . $row["numStock"] . "</p>
-                                </div>
-                                <form method='post'>
-                                    <input type='text' class='changer' name='quant' placeholder='Enter' />
-                                    <br>
-                                    <input type='submit' class='editInputs' value='Submit' />
-                                    <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>";
-            }
+                </div>
+            </div>";
         }
+    }
 
-        else if (isset($_POST['fruit']) || $type == "fruit") { 
-            $type = "fruit";
-            while ($row = mysqli_fetch_array($result)) {
-                if ($row["Type"] == "Fruits")
-                {
-                    $counter = $counter + 1;
-                    $allItems = $allItems . 
-                    "<div class='item'>
-                        <div class='top-item'>
-                            <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
-                            <div class='itemDesc1'>
-                                <p>
-                                    Type: " . $row["Type"] . " <br>
-                                    Product: " . $row["Product"] . " <br>
-                                    Brand: " . $row["Brand"] . "
-                                </p>
-                                <form method='post'>
-                                    <input type='submit' class='remove' name='del' value='Remove' />
-                                    <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
-                                </form>
-                            </div>
-                        </div>
-                        <div class='itemDesc2'>
-                            <div class='edit'>
-                                <div class='price'>
-                                    <div class='priceDesc'>
-                                        <p>Price: " . $row["Price"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='price' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                                <div class='weight'>
-                                    <div class='weightDesc'>
-                                        <p>Weight: " . $row["Weight"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='weight' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                                <div class='quantity'>
-                                    <div class='quantityDesc'>
-                                        <p>Quantity: " . $row["numStock"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='quant' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-                }
-            }
-        } 
+    $counterString = $counter . " results";
 
-        else if (isset($_POST['vegetable']) || $type == "vegetable") { 
-            $type = "vegetable";
-            while ($row = mysqli_fetch_array($result)) {
-                if ($row["Type"] == "Vegetables")
-                {
-                    $counter = $counter + 1;
-                    $allItems = $allItems . 
-                    "<div class='item'>
-                        <div class='top-item'>
-                            <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
-                            <div class='itemDesc1'>
-                                <p>
-                                    Type: " . $row["Type"] . " <br>
-                                    Product: " . $row["Product"] . " <br>
-                                    Brand: " . $row["Brand"] . "
-                                </p>
-                                <form method='post'>
-                                    <input type='submit' class='remove' name='del' value='Remove' />
-                                    <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
-                                </form>
-                            </div>
-                        </div>
-                        <div class='itemDesc2'>
-                            <div class='edit'>
-                                <div class='price'>
-                                    <div class='priceDesc'>
-                                        <p>Price: " . $row["Price"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='price' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newPrice' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                                <div class='weight'>
-                                    <div class='weightDesc'>
-                                        <p>Weight: " . $row["Weight"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='weight' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newWeight' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                                <div class='quantity'>
-                                    <div class='quantityDesc'>
-                                        <p>Quantity: " . $row["numStock"] . "</p>
-                                    </div>
-                                    <form method='post'>
-                                        <input type='text' class='changer' name='quant' placeholder='Enter' />
-                                        <br>
-                                        <input type='submit' class='editInputs' value='Submit' />
-                                        <input type='hidden' name='newQuant' value='" . $row["Brand"] . "' />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-                }
-            }
-        }
+    $_POST['search'] = "";
+    $_POST['searchbar'] = "";
 
-        $counterString = "<p style='display:inline-block' value='counter'> " . $counter . " results</p>";
+    // Connection close  
+    mysqli_close($connection);
 
-        $_POST['search'] = "";
-        $_POST['searchbar'] = "";
-
-        // Connection close  
-        mysqli_close($connection);
-
-    ?>
+?>
