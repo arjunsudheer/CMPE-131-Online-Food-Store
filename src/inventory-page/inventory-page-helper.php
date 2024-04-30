@@ -9,16 +9,25 @@
     $searchVal = "";
     $sort = "A-Z";
     $specFilter = false;
-    $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
+    $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
     $inStock = false;
     $initial = false;
 
     //print_r($_POST);
 
+    function writing()
+    {
+        echo "
+                <script type='text/javascript'> 
+                        alert('i dont think so! v2'); 
+                </script>
+                ";
+    }
+
     if (isset($_POST['searchbar']))
     {
+        $sortDB = "SELECT * FROM items Where Product LIKE '%" . $_POST['searchbar'] . "%' ORDER BY Product, Brand";
         $searchVal = $_POST['searchbar'];
-        $useSearch = true;
     }
 
     if (isset($_POST['add']))
@@ -33,7 +42,7 @@
                 $inStock = true;
             $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
             $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
-            "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+            "SELECT * FROM items ORDER BY Product, Brand";
         }
         else 
         {
@@ -68,7 +77,7 @@
         if (isset($request['del']))
         {
             $sortDB = "DELETE FROM items WHERE Brand ='" . $_POST['delVal'] . "';" 
-            . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+            . "SELECT * FROM items ORDER BY Product, Brand";
             return;
         }
     
@@ -78,7 +87,7 @@
                 if ($request['price'] > 0)
                 {
                     $sortDB = "UPDATE items SET Price = '" . $_POST['price'] . "' WHERE Brand = '" . $_POST['newPrice'] . "';" 
-                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    . "SELECT * FROM items ORDER BY Product, Brand";
                     return;
                 }
         }
@@ -89,7 +98,7 @@
                 if ((double)$request['weight'] > 0)
                 {
                     $sortDB = "UPDATE items SET Weight = '" . $_POST['weight'] . "' WHERE Brand = '" . $_POST['newWeight'] . "';" 
-                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    . "SELECT * FROM items ORDER BY Product, Brand";
                     return;
                 }
         }
@@ -101,13 +110,13 @@
                 if ((int)$request['quant'] > 0)
                 {
                     $sortDB = "UPDATE items SET numStock = '" . $_POST['quant'] . "', inStock = '1' WHERE Brand = '" . $_POST['newQuant'] . "';" 
-                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    . "SELECT * FROM items ORDER BY Product, Brand";
                     return;
                 }
                 else if ($request['quant'] == 0)
                 {
                     $sortDB = "UPDATE items SET numStock = '0', inStock = '0' WHERE Brand = '" . $_POST['newQuant'] . "';" 
-                    . "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product";
+                    . "SELECT * FROM items ORDER BY Product, Brand";
                     return;
                 }
             }
@@ -141,7 +150,9 @@
     $result = mysqli_store_result($connection);
 
     if (isset($_POST['all']) || $type == "all" || $useSearch) 
+    {
         $type = "all";
+    }
 
     else if (isset($_POST['fruit']) || $type == "fruit")
     {
@@ -164,17 +175,17 @@
         $type = $request['filter'];
         if (isset($request['az']))
         {
-            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand";
+            $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
             $sort = "A-Z";
         }
         else if (isset($_POST['za']))
         {
-            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, Brand DESC";
+            $sortDB = "SELECT * FROM items ORDER BY Product, Brand DESC";
             $sort = "Z-A";
         }
         else if (isset($_POST['inStock']))
         {
-            $sortDB = "SELECT Type, Product, Brand, Price, Weight, numStock, inStock, Image FROM items ORDER BY Product, inStock";
+            $sortDB = "SELECT * FROM items ORDER BY Product, inStock";
             $sort = "In Stock";
         }
     }
@@ -188,17 +199,12 @@
 
         while ($row = mysqli_fetch_array($result)) 
         {
-            if ($useSearch)
-            {
-                if ($row["Product"] != $searchVal)
-                    continue;
-            }
             if ($specFilter)
             {
                 if ($type == "fruit")
                     if ($row["Type"] != "Fruits")
                         continue;
-                else if ($type == "vegetable")
+                if ($type == "vegetable")
                     if ($row["Type"] != "Vegetables")
                         continue;
             }
@@ -206,22 +212,21 @@
             $stockStatus = "";
             if ($row['inStock'] == 0)
             {
-                $stockStatus = "Sold Out!";
+                $stockStatus = "(Sold Out!)";
             }
 
             $counter = $counter + 1;
             $allItems = $allItems . 
-            "<div class='item'>
+            "<div class='item' id='" . $row["Product"] . "-" . $row["Brand"] . "'>
                 <div class='top-item'>
                     <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
                     <div class='itemDesc1'>
                         <p>
                             Type: " . $row["Type"] . " <br>
                             Product: " . $row["Product"] . " <br>
-                            Brand: " . $row["Brand"] . "
+                            Brand: " . $row["Brand"] . " " . $stockStatus . "
                         </p>
                         <form method='post'>
-                            <label for='del' value=''>" . $stockStatus . "</label>
                             <input type='submit' class='remove' name='del' value='Remove' />
                             <input type='hidden' name='delVal' value='" . $row["Brand"] . "' />
                         </form>

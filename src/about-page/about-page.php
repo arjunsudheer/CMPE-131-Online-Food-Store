@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="../navbar.css">
     <body>
         <div class="test">
-            <div class="div1">
-                <div class="header">
-
-                </div>
-            </div>
             <div class="div2">
                 <div class="desc">
                     <div class="content">
@@ -48,6 +43,11 @@
                             thus ensuring the stability and loyalty of our customers.
                         </p>
                     </div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="header">
+
                 </div>
             </div>
         </div>
