@@ -1,13 +1,60 @@
 
 body { overflow-y: hidden; }
 
-.input-btn, .filter, .remove, .editInputs { cursor: pointer; }
+.input-btn, .filter, .remove, .editInputs, .searchbar-btn, .button-popup, .dropbtn 
+{ 
+    cursor: pointer; 
+    background-color: rgb(227, 255, 223);
+}
 
 .actualBody { font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
 
-.filter
+.header
+{
+    background-color: rgb(211, 211, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 0px 2px 0px;
+}
+
+.searchbar
+{
+    padding-left: 1%; 
+    padding-bottom: 10px; 
+    padding-top: 10px;
+    display: flex;
+}
+
+.searchbar-txt
 {
     background-color: whitesmoke;
+    border-radius: 4px 0px 0px 4px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px 0px 2px 2px;
+    width: 175px;
+    height: 21px;
+}
+
+.searchbar-btn
+{
+    border-radius: 0px 4px 4px 0px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    height: 27px;
+}
+
+.searchbar-btn:hover { background-color: rgb(106, 177, 101); }
+
+input[type=text] { padding-left: 4px; }
+
+.filter
+{
     border-radius: 4px;
     border-style: solid;
     border-color: black;
@@ -30,7 +77,7 @@ body { overflow-y: hidden; }
 {
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: calc(100vh - 125px);
+    max-height: calc(100vh - 200px);
     height: calc(100vh - 125px);
     position: fixed;
     bottom: 0;
@@ -85,7 +132,7 @@ body { overflow-y: hidden; }
     float: right;
     background-color: white;
     width: 66px;
-    border-radius: 10px;
+    border-radius: 0px 10px 0px 10px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -119,23 +166,31 @@ body { overflow-y: hidden; }
 
 .priceDesc, .weightDesc, .quantityDesc { margin-bottom: -10px; }
 
-.edit .changer { width: 49px; }
+.changer 
+{ 
+    width: 48px; 
+    border-radius: 5px 5px 0px 0px;
+}
 
-.editInputs
+.editInputs 
+{ 
+    width: 58px;
+    border-radius: 0px 0px 5px 5px; 
+}
+
+.changer, .editInputs
 {
     background-color: white;
-    width: 58px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
-    border-radius: 0px 0px 5px 5px;
 }
 
 .editInputs:hover { background-color: grey; }
   
 .dropbtn
 {
-    border-radius: 5px 5px;
+    border-radius: 5px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -257,7 +312,6 @@ body { overflow-y: hidden; }
     border-style: solid;
     border-color: black;
     border-width: 2px;
-    background-color: whitesmoke;
     font-size: 14px;
     display: flex;
     height: 50px;

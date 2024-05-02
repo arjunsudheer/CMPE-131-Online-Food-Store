@@ -186,12 +186,12 @@
         }
         else if (isset($_POST['za']))
         {
-            $sortDB = "SELECT * FROM items ORDER BY Product, Brand DESC";
+            $sortDB = "SELECT * FROM items ORDER BY Product DESC, Brand DESC";
             $sort = "Z-A";
         }
         else if (isset($_POST['inStock']))
         {
-            $sortDB = "SELECT * FROM items ORDER BY Product, inStock";
+            $sortDB = "SELECT * FROM items ORDER BY inStock DESC, Product";
             $sort = "In Stock";
         }
     }

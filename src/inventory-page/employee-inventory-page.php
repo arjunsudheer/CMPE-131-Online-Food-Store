@@ -12,8 +12,11 @@
     
     <body>
         <div class="actualBody">
+            <div class="header">
+                <h1>INVENTORY</h1>
+            </div>
             <a class="button-popup" href="#popupstart">Add Item</a>
-            <form name="searchForm" style="padding-left: 11%; padding-bottom: 10px; padding-top: 10px" method="post">
+            <form name="searchForm" class="searchbar" method="post">
                 <input type="text" class="searchbar-txt" id="searchbar" name="searchbar" 
                         placeholder="Search for Product/Brand" list="searchlist" oninput="showBtnFunc()"/>
                 <datalist id="searchlist">
