@@ -1,6 +1,5 @@
 <?php
 include("../navbar/navbar.php");
-include("../search-bar/search-bar.html");
 ?>
 
 <html>
