@@ -40,9 +40,15 @@
         {
             if ($_POST['addQuantity'] >= 1)
                 $inStock = true;
-            $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
-            $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
-            "SELECT * FROM items ORDER BY Product, Brand";
+
+            // list($imgWidth, $imgHeight) = getimagesize($_POST['addImage']);
+
+            // if ($imgWidth % $imgHeight == 0)
+            // {
+                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
+                $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
+                "SELECT * FROM items ORDER BY Product, Brand";   
+            //}
         }
         else 
         {

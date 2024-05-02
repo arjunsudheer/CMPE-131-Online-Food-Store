@@ -17,7 +17,7 @@ body { overflow-y: hidden; }
     height: 35px;
 }
 
-.filter:hover { background-color: rgb(227, 243, 226); }
+.filter:hover { background-color: rgb(106, 177, 101); }
 
 .part2
 {
@@ -38,7 +38,8 @@ body { overflow-y: hidden; }
 
 .item
 {
-    background-color: rgb(19, 43, 24);
+    
+    background-image: linear-gradient(rgb(19, 43, 24), rgb(49, 103, 53));
     color: white;
     font-size: 14px;
     display: flex;
@@ -185,7 +186,7 @@ body { overflow-y: hidden; }
 .dropdown:hover .dropbtn 
 {
     border-radius: 5px 5px 0px 0px;
-    background-color: #3e8e41;
+    background-color: rgb(106, 177, 101);
 }
 
 .adder
@@ -270,7 +271,7 @@ body { overflow-y: hidden; }
 
 .button-popup:hover
 {
-    background-color: rgb(227, 243, 226);
+    background-color: rgb(106, 177, 101);
 }
 
 .popup .close 
