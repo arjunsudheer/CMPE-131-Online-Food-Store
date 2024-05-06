@@ -9,8 +9,16 @@
     margin-bottom: 20px;
 }
 
-.label {
-    font-weight: bold;
+label, #submit-btn {
+    margin-left: 50px;
+}
+
+#report-result {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
 }
 
 .input-field {
@@ -35,7 +43,7 @@
 }
 
 /* Button styling */
-.button {
+button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -46,30 +54,36 @@
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
+button:hover {
     background-color: #0056b3;
 }
 
 /* Table styling */
-.table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.table th, .table td {
+#tablewrapper {
+  overflow:scroll;
+  height:75vh;
+
+}
+
+table th, table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.table th {
+table th {
     background-color: #f2f2f2;
 }
 
-.table tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.table tr:hover {
+table tr:hover {
     background-color: #ddd;
 }
