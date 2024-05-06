@@ -1,13 +1,13 @@
 <?php
-include("../navbar/navbar.html");
+include("navbar.html");
 ?>
-
+<!DOCTYPE html>
 <html>
 <body>
 <head>
   <link rel="stylesheet" href="generate-reports.css">
 </head>
-  <form action="generate-reports.php" method="post">
+  <form class=“form-group” action="generate-reports.php" method="post">
 
     <label for="startTime">Start Date:</label>
     <input type="date" id="startTime" name="startTime">
@@ -19,7 +19,7 @@ include("../navbar/navbar.html");
 
     <br>
 
-    <input type="submit" value="Generate Product Report">
+    <input id="submit-btn" type="submit" value="Generate Product Report">
   </form>
   <br>
 </body>
@@ -135,42 +135,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
       }
 
-      // since mergeSort needs numeric values to compare,
-      // make a new array to store productRevenue's entries as numerical values
-      $productRevenueValues = array_values($productRevenue);
-
-      // make a new array to store the productRevenue's keys (Product Type - Name)
-      // so it can used to match up with productRevenueValues once it's sorted
-      $productRevenueKeys = array_keys($productRevenue);
-
-      // mergeSort productRevenueNumeric
-      mergeSort($productRevenueValues, 0, count($productRevenueValues) - 1);
-
-      // sort the productRevenueKeys array based on the corresponding values in $productRevenueValues
-      usort($productRevenueKeys, function($a, $b) use ($productRevenue, $productRevenueValues) {
-          return $productRevenue[$a] < $productRevenue[$b] ? 1 : -1;
-      });
-
-      // create a new array with sorted values and keys
-      $productRevenueSorted = array();
-      foreach ($productRevenueKeys as $key) {
-          // make the keys and values to productRevenueSorted
-          $productRevenueSorted[$key] = array_shift($productRevenueValues);
-      }
-
-      // update $productRevenue with $productedRevenueSorted's keys and values
-      $productRevenue = $productRevenueSorted;
+      // sort the productRevenue array by total revenue in descending order
+      arsort($productRevenue);
 
       // display the most profitable products
       if ($mostProfitableProduct !== null) {
         $maxRevenue = number_format($maxRevenue, 2, '.', ',');
-        echo "The most profitable product is $mostProfitableProduct making $$maxRevenue.";
+        echo "<p id='report-result'>The most profitable product is $mostProfitableProduct making $$maxRevenue.</p>";
 ?>
 <br>
 <br>
 <?php
         // display all the array's info in a table
         echo "\n";
+        echo "<div id='tablewrapper'>";
         echo "<table border='1'>
                 <tr>
                   <th>Product Type - Product Name</th>
@@ -184,10 +162,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>";
         }
         echo "</table>";
+        echo "</div>";
       }
       // if the chosen time frame is invalid
       else {
-        echo "There is no sales data within the chosen time frame. Please try again.";
+        echo "<p id='report-result'>There is no sales data within the chosen time frame. Please try again.</p>";
       }
     }
     else {
