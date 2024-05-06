@@ -77,64 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
         }
 
-        // helper 'merge' functions for mergeSort
-        function merge(&$array, $left, $middle, $right) {
-          $leftSize = $middle - $left + 1;
-          $rightSize = $right - $middle;
-
-          // create temporary arrays
-          $tempLeftArray = array();
-          $tempRightArray = array();
-
-          // copy data to temporary arrays
-          for ($i = 0; $i < $leftSize; $i++)
-              $tempLeftArray[$i] = $array[$left + $i];
-          for ($j = 0; $j < $rightSize; $j++)
-              $tempRightArray[$j] = $array[$middle + 1 + $j];
-
-          // merge the temporary arrays back into original array
-          $i = 0;
-          $j = 0;
-          $k = $left;
-          while ($i < $leftSize && $j < $rightSize) {
-              if ($tempLeftArray[$i] >= $tempRightArray[$j]) {
-                  $array[$k] = $tempLeftArray[$i];
-                  $i++;
-              }
-              else {
-                  $array[$k] = $tempRightArray[$j];
-                  $j++;
-              }
-              $k++;
-          }
-
-          // copy the remaining elements of tempLeftArray
-          while ($i < $leftSize) {
-              $array[$k] = $tempLeftArray[$i];
-              $i++;
-              $k++;
-          }
-
-          // copy the remaining elements of tempRightArray
-          while ($j < $rightSize) {
-              $array[$k] = $tempRightArray[$j];
-              $j++;
-              $k++;
-          }
-      }
-
-      // merge sort productRevenue array by descending total revenue
-      function mergeSort(&$array, $left, $right) {
-          if ($left < $right) {
-              $middle = $left + (($right - $left) / 2);
-
-              mergeSort($array, $left, $middle);
-              mergeSort($array, $middle + 1, $right);
-
-              merge($array, $left, $middle, $right);
-          }
-      }
-
       // sort the productRevenue array by total revenue in descending order
       arsort($productRevenue);
 
