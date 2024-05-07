@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endTime = $_POST['endTime'];
 
     // connect to the sales database
-    $connection = mysqli_connect("localhost", "root", "", "sales");
+    $connection = mysqli_connect("localhost", "root", "", "ofs");
 
     // check if there was a successful connection
     if (!$connection) {
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productRevenue = array();
     // get the required info that falls within the time frame from the product sales table
     $query = "SELECT productType, productName, revenue
-              FROM product
+              FROM productSales
               WHERE theDate BETWEEN '$startTime' AND '$endTime'";
     $result = mysqli_query($connection, $query);
 
