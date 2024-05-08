@@ -19,7 +19,7 @@
        // session_start();
        if (isset($_SESSION['user_type']) && $_SESSION['user_type'] !== 'logged_out') {
             echo '<a href="../profile/profile.php"><i class="fa fa-fw fa-dollar"></i> Profile</a>';
-            echo '<a href="../checkout/CheckOutPage.php"><i class="fa fa-fw fa-dollar"></i> Checkout</a>';
+            //echo '<a href="../checkout/CheckOutPage.php"><i class="fa fa-fw fa-dollar"></i> Checkout</a>';
        }
         // Check if the user is an employee
         if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'employee') {
@@ -27,6 +27,7 @@
         }
         ?>
         <a id="cart-button" href="#"><i class="fa fa-fw fa-shopping-cart"></i> Cart</a>
+        <a href="../about-page/about-page.php"><i class="fa fa-store" aria-hidden="true"></i> About Us</a>
 
         <a href="../navbar/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
 
@@ -45,15 +46,15 @@
                 <p id="quantity-amount">1</p>
                 <i id="add-quantity" class="fa fa-plus" aria-hidden="true"></i>
             </div>
-        </div>
-        <div id="checkout-total">
-            <p>Subtotal = cost</p>
-            <p>Weight = lbs</p>
-            <button type="submit" id="checkout-button">Checkout</button>
+            <div id="checkout-total">
+                <p>Subtotal = cost</p>
+                <p>Weight = lbs</p>
+                <a href="../checkout/CheckOutPage.php"><button type="submit" id="checkout-button">Checkout</button></a>
+            </div>
         </div>
     </div>
 </body>
 
-<script src="../navbar/navbar.css"></script>
+<script src="../navbar/navbar.js"></script>
 
 </html>
