@@ -52,7 +52,7 @@ class AddProductItems
     public function createQuery(): string
     {
         // get all the product items if no productFilter is specified
-        $sql_get_item = "SELECT * FROM Items";
+        $sql_get_item = "SELECT * FROM items";
         // get all product items where the Type of the product is productFilter
         if (!empty($this->productFilter)) {
             $sql_get_item .= " WHERE ";
@@ -100,7 +100,8 @@ class AddProductItems
             $product_name = $row["Product"];
             $product_brand = $row["Brand"];
             $product_price = $row["Price"];
-            $product_image = "../../OFS_Binary/" . $row["Image"];
+            $product_weight = $row["Weight"];
+            $product_image = "../inventory/OFS_Binary/" . $row["Image"];
             echo ("
                 <div class=\"product-item $product_type\">
                     <p>$product_name</p>
@@ -108,10 +109,14 @@ class AddProductItems
                     <img src=\"$product_image\" alt=\"product-item\" class=\"product-image\">
                     <div class=\"price-and-add\">
                         <p>$$product_price</p>
-                        <button class=\"add-btn\">Add</button>
+                        <form method='post' action='../main-page/add-to-cart.php?product_name=$product_name&product_brand=$product_brand&product_price=$product_price&product_weight=$product_weight'>
+                          <button type='submit' name='add_to_cart' id='addToCartButton'>Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             ");
+
+            //<a href='../main-page/add-to-cart.php'><button type='submit' name='add-to-cart' id='add-to-cart'>Add</button></a>
             $this->itemsAdded++;
             // check if the current product row should be ended
             if (($this->itemsAdded) % $this->numProductsPerRow == 0) {
@@ -137,4 +142,3 @@ class AddProductItems
         }
     }
 }
-?>
