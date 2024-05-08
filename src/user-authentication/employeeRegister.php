@@ -1,22 +1,17 @@
 <?php include("authentication_animation.html"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>OFS - Employee Registration</title>
     <link rel="stylesheet" href="authentication.css">
-    <!-- Load an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
-    <header class="top-bar">
-        <a href="/main-page/main-page.php">
-            <img src="mainLogo.jpg" style="width: 100px; height: auto;">
-        </a>
-    </header>
+  <header class="top-bar">
+    <a href="../main-page/main-page.php">
+        <img src="mainLogo.jpg" style="width: 100px; height: auto;">
+    </a>
+  </header>
     <div id="authentication-box">
         <h3>Employee Registration</h3>
         <p>Enter your information below:</p>
@@ -28,6 +23,8 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Retrieve form data
             $employeeID = $_POST['employee-id'];
+            $firstName = $_POST['first-name'];
+            $lastName = $_POST['last-name'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
@@ -45,31 +42,37 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            // Prepare SQL statement to check if the employee ID already exists
-            $check_sql = "SELECT * FROM employees WHERE employeeID = '$employeeID'";
-            $result = $conn->query($check_sql);
+            // Check if the input is a 5-digit number
+            if (strlen($employeeID) == 5 && is_numeric($employeeID)) {
+                // Concatenate '2' with the user input to form the final ID
+                $employeeID = '2' . $employeeID;
 
-            if ($result->num_rows > 0) {
-                // Employee ID already exists
-                echo "<div style='color: red;'>Employee ID already exists!</div>";
-            } else {
-                // Prepare SQL statement to insert employee registration data
-                $sql = "INSERT INTO employees (employeeID, email, password)
-                        VALUES ('$employeeID', '$email', '$password')";
+                // Prepare SQL statement to check if the employee ID already exists
+                $check_sql = "SELECT * FROM employees WHERE id = '$employeeID'";
+                $result = $conn->query($check_sql);
 
-                if ($conn->query($sql) === TRUE) {
-                    // Registration successful
-                    echo "<div style='color: green;'>Registration successful!</div>";
-                    // Set session variable to indicate employee is logged in
-                    $_SESSION['user_id'] = $employeeID;
-                    $_SESSION['user_type'] = 'employee';
-                    // Redirect to main page
-                    header("Location: /main-page/main-page.php");
-                    exit(); // Terminate script execution after redirection
+                if ($result->num_rows > 0) {
+                    // Employee ID already exists
+                    echo "<div style='color: red;'>Employee ID already exists!</div>";
                 } else {
-                    // Registration failed
-                    echo "<div style='color: red;'>Error: " . $conn->error . "</div>";
+                    // Prepare SQL statement to insert employee registration data
+                    $sql = "INSERT INTO employees (id, firstName, lastName, email, password)
+                            VALUES ('$employeeID', '$firstName', '$lastName', '$email', '$password')";
+
+                    if ($conn->query($sql) === TRUE) {
+                        // Registration successful
+                        echo "<div style='color: green;'>Registration successful!</div>";
+                        // Set session variable to indicate employee is logged in
+                        $_SESSION['user_id'] = $employeeID;
+                        $_SESSION['user_type'] = 'employee';
+                        // Redirect to main page
+                        header("Location: ../main-page/main-page.php");
+                        exit(); // Terminate script execution after redirection
+                    }
                 }
+            } else {
+                // Error: Input is not a 5-digit number
+                echo "<script>alert('Please enter a 5-digit number!');</script>";
             }
 
             // Close connection
@@ -82,25 +85,41 @@
         <form action="#" method="post" onsubmit="return validateEmployeeID()">
             <div class="authentication-input">
                 <label for="employee-id">Employee ID:</label>
-                <input type="text" id="employee-id" name="employee-id" placeholder="Enter your employee id" required autocomplete="off">
+                <input type="text" id="employee-id" name="employee-id" placeholder="Enter your employee ID" required autocomplete="off">
+            </div>
+            <div class="authentication-input">
+                <label for="first-name">First Name:</label>
+                <input type="text" name="first-name" id="first-name" placeholder="Enter your first name" required autocomplete="off">
+            </div>
+            <!-- Last Name -->
+            <div class="authentication-input">
+                <label for="last-name">Last Name:</label>
+                <input type="text" name="last-name" id="last-name" placeholder="Enter your last name" required autocomplete="off">
             </div>
             <div class="authentication-input">
                 <label for="email">Email:</label>
                 <input type="text" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
             </div>
             <div class="authentication-input">
-                <label for="password">Password:</label>
-                <input type="password" id="password-input" name="password" placeholder="Enter your password" required autocomplete="off">
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password-input" placeholder="Enter your password" autocomplete="off"/>
+                </div>
+                <input type="checkbox" id="password-view" name="password-view">Show Password
             </div>
-            <div>
-                <input type="checkbox" id="password-view">Show Password
-            </div>
+            <!-- "Login" button to submit the form -->
+            <button type="submit" class="green-btn" id="registration-button">Log In</button>
+          </form>
+          <a id="back-btn" href="pickEmployeeOrCustomer.php"><-- Back</a>
 
-            <button type="submit" class="green-btn">Sign Up</button>
-        </form>
-        <a id="back-btn" href="employeeLogin.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a>
-    </div>
-</body>
-<script src="authentication.js"></script> <!-- Include the JavaScript file -->
-
-</html>
+      </div>
+      <script>
+      // JavaScript code to clear password field and uncheck "Show Password" checkbox after form submission
+      document.getElementById('login-form').addEventListener('submit', function() {
+          document.getElementById('password-input').value = ''; // Clear password field
+          document.getElementById('password-view').checked = false; // Uncheck "Show Password" checkbox
+      });
+  </script>
+  </body>
+   <script src="checkPassword.js"></script>
+  </html>

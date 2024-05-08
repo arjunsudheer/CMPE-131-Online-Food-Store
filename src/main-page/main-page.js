@@ -17,7 +17,7 @@ function refreshPopupEventListeners() {
     // add an event listener to each product information div, when clicked show the product information popup
     for (let i = 0; i < productItems.length; i++) {
         productItems[i].addEventListener("click", function (e) {
-            /* 
+            /*
             * don't show the product information popup if the add to cart button was clicked,
             * only create new popup if there isn't already one displayed on the screen
             */
@@ -161,3 +161,28 @@ function updateNumberOfResults() {
 
 updateNumberOfResults();
 refreshPopupEventListeners();
+
+
+
+
+
+$(document).ready(function() {
+    $('#addToCartForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Perform AJAX request to add product to cart
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(response) {
+                // Handle success response
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                console.error(error);
+            }
+        });
+    });
+});
