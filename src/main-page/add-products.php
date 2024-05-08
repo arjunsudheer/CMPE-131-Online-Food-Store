@@ -52,7 +52,7 @@ class AddProductItems
     public function createQuery(): string
     {
         // get all the product items if no productFilter is specified
-        $sql_get_item = "SELECT * FROM items";
+        $sql_get_item = "SELECT * FROM Items";
         // get all product items where the Type of the product is productFilter
         if (!empty($this->productFilter)) {
             $sql_get_item .= " WHERE ";
