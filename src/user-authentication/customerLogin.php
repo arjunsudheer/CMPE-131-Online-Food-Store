@@ -1,21 +1,16 @@
 <?php include("authentication_animation.html"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>OFS - Login</title>
     <link rel="stylesheet" href="authentication.css">
-    <!-- Load an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
     <header class="top-bar">
-        <a href="/main-page/main-page.php">
-            <img src="mainLogo.jpg" style="width: 100px; height: auto;">
-        </a>
+      <a href="../main-page/main-page.php">
+          <img src="mainLogo.jpg" style="width: 100px; height: auto;">
+      </a>
     </header>
     <div id="authentication-box">
         <div id="switch-authentication">
@@ -57,7 +52,7 @@
                 $_SESSION['user_type'] = 'customer';
 
                 // Redirect to main page or dashboard
-                header("Location: /main-page/main-page.php");
+                header("Location: ../main-page/main-page.php");
                 exit();
             } else {
                 // Login failed
@@ -69,36 +64,34 @@
         }
         ?>
 
-
         <form action="" method="post">
             <h3>Customer Login</h3>
             <!-- Stores the email label and input field -->
             <div class="authentication-input">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" autocomplete="off" />
+                <input type="email" name="email" id="email" placeholder="Enter your email" autocomplete="off"/>
             </div>
             <!-- Stores the password label, input field, and Show/Hide Password toggle -->
             <div class="authentication-input">
                 <div>
-                    <label for="password" id="password">Password:</label>
-                    <input type="password" name="password" id="password-input" placeholder="Enter your password" autocomplete="off" />
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password-input" placeholder="Enter your password" autocomplete="off"/>
                 </div>
-                <input type="checkbox" id="password-view">Show Password
+                <input type="checkbox" id="password-view" name="password-view">Show Password
             </div>
             <!-- "Login" button to submit the form -->
             <button type="submit" class="green-btn" id="registration-button">Log In</button>
         </form>
-        <a id="back-btn" href="pickEmployeeOrCustomer.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a>
+        <a id="back-btn" href="pickEmployeeOrCustomer.php"><-- Back</a>
 
     </div>
     <script>
-        // JavaScript code to clear password field and uncheck "Show Password" checkbox after form submission
-        document.getElementById('login-form').addEventListener('submit', function() {
-            document.getElementById('password-input').value = ''; // Clear password field
-            document.getElementById('password-view').checked = false; // Uncheck "Show Password" checkbox
-        });
-    </script>
+    // JavaScript code to clear password field and uncheck "Show Password" checkbox after form submission
+    document.getElementById('login-form').addEventListener('submit', function() {
+        document.getElementById('password-input').value = ''; // Clear password field
+        document.getElementById('password-view').checked = false; // Uncheck "Show Password" checkbox
+    });
+</script>
 </body>
-<script src="authentication.js"></script>
-
+<script src="checkPassword.js"></script>
 </html>
