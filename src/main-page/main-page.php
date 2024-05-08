@@ -3,7 +3,7 @@ session_start(); // Start the session
 use Arjunsudheer\Cmpe131OnlineFoodStore as current;
 
 include("../navbar/navbar.php");
-include("../navbar/search-bar.html");
+include("../search-bar/search-bar.html");
 include("add-products.php");
 
 // Check if the user is logged in
@@ -29,7 +29,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
     <meta charset="UTF-8">
     <title>Main Page</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <link rel="stylesheet" href="../navbar/search-bar.css">
+    <link rel="stylesheet" href="../search-bar/search-bar.css">
     <link rel="stylesheet" href="main-page.css">
 </head>
 
