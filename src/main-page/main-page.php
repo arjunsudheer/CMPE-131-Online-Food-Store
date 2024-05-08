@@ -1,11 +1,26 @@
 <?php
-
+session_start(); // Start the session
 use Arjunsudheer\Cmpe131OnlineFoodStore as current;
 
 include("../navbar/navbar.php");
-include("../search-bar/search-bar.html");
+include("../navbar/search-bar.html");
 include("add-products.php");
+
+// Check if the user is logged in
+if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
+    // Display user ID and user type
+    echo "User ID: " . $_SESSION['user_id'] . "<br>";
+    echo "User Type: " . $_SESSION['user_type'] . "<br>";
+} else {
+    // If the user is not logged in, display a message or redirect to the login page
+    echo "Please log in to view this page.";
+    // You can add redirection code here if needed
+}
 ?>
+
+<style>
+<?php include 'main-page.css'; ?>
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +28,8 @@ include("add-products.php");
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
+    <link rel="stylesheet" href="../navbar/navbar.css">
+    <link rel="stylesheet" href="../navbar/search-bar.css">
     <link rel="stylesheet" href="main-page.css">
 </head>
 
