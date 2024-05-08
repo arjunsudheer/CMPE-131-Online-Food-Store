@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
 
     // Append currentCart and submission date to cartHistory in the database
     $submissionDate = date('Y-m-d H:i:s'); // Get the current date and time
-    $sql_update_cart = "UPDATE $tableName SET cartHistory = CONCAT_WS(';', cartHistory, '$currentCart|$submissionDate') WHERE id = $userId";
+    $sql_update_cart = "UPDATE $tableName SET cartHistory = CONCAT_WS(';', '$currentCart|$submissionDate', cartHistory) WHERE id = $userId";
+
 
     $result_update_cart = mysqli_query($connection, $sql_update_cart);
     if (!$result_update_cart) {
@@ -52,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
     mysqli_close($connection);
 
     // Redirect to a thank you page or home page
-    header("Location: /main-page/main-page.php");
+    header("Location: ../main-page/main-page.php");
     exit();
 }
 ?>
@@ -86,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
             <div id="address"></div>
             <form method="POST">
                 <div style="display: flex;flex-direction: column; text-align: center;">
-                    <label for="name">Name</label>
+                    <label for="name">Name of Order</label>
                     <input  type="text" id="name" name="name" autocomplete="name" enterkeyhint="next">
 
                     <label for="street-address">Street address</label>
@@ -99,9 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
                     <label for="city">City</label>
                     <input  type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next">
                 </div>
-
-                <h2 class="title">Apply Discount Code</h2>
-                <input class="title"  type="text" id="discount code" name="discount code" autocomplete="discount code" enterkeyhint="next">
 
                 <h2 class="title">Payment Details: </h2>
                 <div class="flex-container-hor">
