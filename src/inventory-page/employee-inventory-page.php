@@ -1,4 +1,3 @@
-<?php include("../navbar/navbar.php"); ?>
 <style>
 <?php include 'employee-inventory-page.css'; ?>
 </style>
@@ -7,14 +6,14 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
-    <link rel="stylesheet" href="../../navbar.css">
+    <?php include "../navbar/navbar.php"; ?>
     <?php include 'inventory-page-helper.php'; ?>
     
     <body>
+        <div class="header">
+            <h1>INVENTORY</h1>
+        </div>
         <div class="actualBody">
-            <div class="header">
-                <h1>INVENTORY</h1>
-            </div>
             <a class="button-popup" href="#popupstart">Add Item</a>
             <form name="searchForm" class="searchbar" method="post">
                 <input type="text" class="searchbar-txt" id="searchbar" name="searchbar" 
@@ -24,7 +23,7 @@
                 <input type="submit" class="searchbar-btn" value="Search"/>
             </form>
             <?php echo $tester; ?>
-            <div style="padding-left: 11%">
+            <div>
                 <form method="post">
                     <input type="submit" id="all" class="filter" name="all" value="ALL"/>
                     <input type="submit" id="fruit"  class="filter" name="fruit" value="FRUIT"/>
@@ -43,7 +42,7 @@
                     </form>
                 </div>
             </div>
-            <div style="position: relative; top: 200px; padding-left: 11%">
+            <div>
                 <div class="item-holder">
                     <?php echo $allItems; ?>
                 </div>
