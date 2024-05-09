@@ -14,7 +14,7 @@
     </form>
 
     <div style="padding-left: 95%">
-        <form class="generate" action="generate-reports.php" method="post">
+        <form class="generate" action="../generate-reports/generate-reports.php" method="post">
             <button type="submit" name="generateButton">Generate Report</button>
         </form>
     </div>
