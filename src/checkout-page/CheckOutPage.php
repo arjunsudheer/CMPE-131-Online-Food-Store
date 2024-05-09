@@ -164,7 +164,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
                         <label>CVV</label>
                         <input class="cvv" placeholder="123" type="text" pattern="[0-9]{3,4}" title="Please enter a valid CVV code (3 or 4 digits)" maxlength="4" required autocomplete="off"/>
                     </div>
-
                 </div>
                 <button class="button" id="checkout-button" name="checkout-button">Pay</button>
 

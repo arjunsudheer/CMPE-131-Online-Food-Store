@@ -54,12 +54,149 @@ body {
   height: 27px;
 }
 
-.searchbar-btn:hover {
-  background-color: rgb(106, 177, 101);
+body { overflow-y: hidden; }
+
+.input-btn, .filter, .remove, .editInputs, .searchbar-btn, .button-popup, .dropbtn, .generate-btn 
+{ 
+    cursor: pointer; 
+    background-color: rgb(227, 255, 223);
 }
 
-input[type="text"] {
-  padding-left: 4px;
+.input-btn:hover, .filter:hover, .remove:hover, .editInputs:hover, .searchbar-btn:hover, .button-popup:hover, .dropbtn:hover, .generate-btn:hover
+{
+    background-color: rgb(106, 177, 101);
+}
+
+.header { font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+
+.actualBody
+{ 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    margin-left: 11%;
+}
+
+.header
+{
+    background-color: rgb(211, 211, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 0px 2px 0px;
+}
+
+.searchbar
+{ 
+    padding-bottom: 10px; 
+    padding-top: 10px;
+    display: flex;
+}
+
+.searchbar-txt
+{
+    background-color: whitesmoke;
+    border-radius: 4px 0px 0px 4px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px 0px 2px 2px;
+    width: 175px;
+    height: 27px;
+}
+
+.searchbar-btn
+{
+    border-radius: 0px 4px 4px 0px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    height: 27px;
+}
+
+input[type=text] { padding-left: 4px; }
+
+.filter
+{
+    border-radius: 4px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    font-weight: 100;
+    font-size: 12px;
+    height: 35px;
+}
+
+.part2
+{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.item-holder
+{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - 230px);
+    height: calc(100vh - 230px);
+    position: fixed;
+    bottom: 0;
+}
+
+.item
+{
+    
+    background-image: linear-gradient(rgb(19, 43, 24), rgb(49, 103, 53));
+    color: white;
+    font-size: 14px;
+    display: flex;
+    width: 325px;
+    max-width: 325px;
+    height: 175px;
+    max-height: 175px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+
+    float: left;
+    display: flex;
+    flex-direction: column;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.top-item
+{
+    display: flex;
+    position: relative;
+}
+
+.top-item .image
+{
+    height: 70px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    margin: 7.5px;
+}
+
+.remove
+{
+    position: absolute;
+    top: 0px;
+    left: 260px;
+    float: right;
+    background-color: white;
+    width: 66px;
+    border-radius: 0px 10px 0px 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    font-weight: 100;
 }
 
 .filter {
@@ -277,81 +414,106 @@ input[type="text"] {
 
 /*----------------*/
 
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  display: none;
-  opacity: 0;
+.overlay 
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    display: none;
+    opacity: 0;
 }
 
-.overlay:target {
-  visibility: visible;
-  display: block;
-  opacity: 1;
+.overlay:target 
+{
+    visibility: visible;
+    display: block;
+    opacity: 1;
 }
 
-.popup {
-  margin: 70px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 50vw;
-  height: 55vh;
-  position: relative;
-  transition: all 5s ease-in-out;
+.popup 
+{
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 50vw;
+    height: 55vh;
+    position: relative;
+    transition: all 5s ease-in-out;
 }
 
-.button-popup {
-  text-decoration: none;
-  color: #333;
-  border-radius: 5px;
-  padding: 2px;
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
-  font-size: 14px;
-  display: flex;
-  height: 50px;
-  width: 100px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  margin-right: 10px;
-  float: right;
+.btn-top-right
+{
+    float: right;
+    display: flex;
+    padding: 10px;
 }
 
-.button-popup:hover {
-  background-color: rgb(106, 177, 101);
+.generate-btn
+{
+    color: #333;
+    border-radius: 5px;
+    padding: 2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    font-size: 14px;
+    display: flex;
+    height: 58px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
 
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
+.button-popup
+{
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+    padding: 2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    font-size: 14px;
+    display: flex;
+    height: 50px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
 }
 
-.popup .close:hover {
-  color: orange;
+.popup .close 
+{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
 }
 
-.popup .content {
-  max-height: 70%;
-  overflow: auto;
+.popup .close:hover 
+{
+    color: orange;
 }
 
-.add-item-gen {
-  display: flex;
-  padding-left: 4px;
-  padding-bottom: 12px;
+.popup .content 
+{
+    max-height: 70%;
+    overflow: auto;
+}
+
+.add-item-gen
+{
+    display: flex;
+    padding-left: 4px;
+    padding-bottom: 12px;
 }
