@@ -12,6 +12,8 @@
     $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
     $inStock = false;
     $initial = false;
+    $imgWidth = 0;
+    $imgHeight = 0;
 
     //print_r($_POST);
 
@@ -41,14 +43,25 @@
             if ($_POST['addQuantity'] >= 1)
                 $inStock = true;
 
-            // list($imgWidth, $imgHeight) = getimagesize($_POST['addImage']);
+            $image_path = "/../../../../OFS_Binary/" .$_POST['addImage'];
 
-            // if ($imgWidth % $imgHeight == 0)
-            // {
-                $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
-                $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
-                "SELECT * FROM items ORDER BY Product, Brand";   
-            //}
+            if (file_exists($image_path))
+            {
+                list($imgWidth, $imgHeight) = getimagesize($image_path);
+                if ($imgWidth % $imgHeight == 0)
+                {
+                    $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
+                    $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
+                    "SELECT * FROM items ORDER BY Product, Brand";   
+                }
+            }
+            else {
+                echo "
+                <script type='text/javascript'> 
+                        alert('unable to add'); 
+                </script>
+                ";
+            }
         }
         else 
         {
@@ -145,8 +158,19 @@
         echo "Database connection failed."; 
     } 
 
-    // Execute the query and store the result set 
-    mysqli_multi_query($connection, $sortDB);
+    try {
+        // Execute the query and store the result set 
+        mysqli_multi_query($connection, $sortDB);
+    } catch (\Throwable $th) {
+        $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
+        mysqli_multi_query($connection, $sortDB);
+        echo "
+                <script type='text/javascript'> 
+                        alert('unable to add'); 
+                </script>
+                ";
+        
+    }
 
     if (mysqli_more_results($connection))
     {
