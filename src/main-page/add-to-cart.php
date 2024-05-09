@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
     $productBrand = $_GET['product_brand'];
     $productPrice = $_GET['product_price'];
     $productWeight = $_GET['product_weight'];
+    $quantity = $_POST['quantity']; // Retrieve quantity from the form
 
 
     // Update the employee's cart with the new product
@@ -24,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
         echo 'error';
         die("Connection failed: " . mysqli_connect_error());
     }
-    echo "Hello";
 
     // Retrieve the current cart data from the database
     $sql_select_cart = "SELECT currentCart FROM $tableName WHERE id = $user_id";
@@ -38,6 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
         exit();
     }
 
+    // Check if the product already exists in the cart
+    $cartItems = explode(",", $currentCart);
+    foreach ($cartItems as $item) {
+        $itemData = explode("|", $item);
+        if ($itemData[0] === $productName && $itemData[1] === $productBrand) {
+            // Product already exists in the cart
+            mysqli_close($connection);
+            header("Location: ../main-page/main-page.php?error=Product already exists in the cart.");
+            exit();
+        }
+    }
+
     // Append the new product information to the current cart data
     // Check if $currentCart is not empty
     if (!empty($currentCart)) {
@@ -45,9 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
     } else {
         $updatedCart = "";
     }
-
+    $quantity = 1;
     // Append the new product information to the current cart data
-    $updatedCart .= "$productName|$productBrand|$productPrice|$productWeight";
+    $updatedCart .= "$productName|$productBrand|$productPrice|$productWeight|$quantity";
 
     // Update the database with the new cart data
     $sql_update_cart = "UPDATE $tableName SET currentCart = '$updatedCart' WHERE id = $user_id";

@@ -101,7 +101,7 @@ class AddProductItems
             $product_brand = $row["Brand"];
             $product_price = $row["Price"];
             $product_weight = $row["Weight"];
-            $product_image = "../inventory/OFS_Binary/" . $row["Image"];
+            $product_image = "../inventory-page/OFS_Binary/" . $row["Image"];
             echo ("
                 <div class=\"product-item $product_type\">
                     <p>$product_name</p>

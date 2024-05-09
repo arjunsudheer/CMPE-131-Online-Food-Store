@@ -9,8 +9,6 @@ include("add-products.php");
 // Check if the user is logged in
 if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
     // Display user ID and user type
-    echo "User ID: " . $_SESSION['user_id'] . "<br>";
-    echo "User Type: " . $_SESSION['user_type'] . "<br>";
 } else {
     // If the user is not logged in, display a message or redirect to the login page
     echo "Please log in to view this page.";
