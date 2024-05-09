@@ -172,6 +172,24 @@
         $specFilter = true;
     }
 
+    else if (isset($_POST['meat']) || $type == "meat")
+    {
+        $type = "meat";
+        $specFilter = true;
+    }
+
+    else if (isset($_POST['dairy']) || $type == "dairy")
+    {
+        $type = "dairy";
+        $specFilter = true;
+    }
+
+    else if (isset($_POST['sweet']) || $type == "sweet")
+    {
+        $type = "sweet";
+        $specFilter = true;
+    }
+
     addItems($_POST, $result, $type, $specFilter);
 
     function checkFilter($request)
@@ -213,6 +231,15 @@
                 if ($type == "vegetable")
                     if ($row["Type"] != "Vegetables")
                         continue;
+                if ($type == "meat")
+                    if ($row["Type"] != "Meat")
+                        continue;
+                if ($type == "dairy")
+                    if ($row["Type"] != "Dairy")
+                        continue;
+                if ($type == "sweet")
+                    if ($row["Type"] != "Sweet")
+                        continue;
             }
 
             $stockStatus = "";
@@ -225,7 +252,7 @@
             $allItems = $allItems . 
             "<div class='item' id='" . $row["Product"] . "-" . $row["Brand"] . "'>
                 <div class='top-item'>
-                    <img src='../inventory-page/OFS_Binary/" . $row["Image"] . "' class='image'>
+                    <img src='../../../../OFS_Binary/" . $row["Image"] . "' class='image'>
                     <div class='itemDesc1'>
                         <p>
                             Type: " . $row["Type"] . " <br>

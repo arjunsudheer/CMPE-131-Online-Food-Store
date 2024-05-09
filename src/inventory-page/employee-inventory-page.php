@@ -30,9 +30,12 @@
             <?php echo $tester; ?>
             <div>
                 <form method="post">
-                    <input type="submit" id="all" class="filter" name="all" value="ALL"/>
-                    <input type="submit" id="fruit"  class="filter" name="fruit" value="FRUIT"/>
-                    <input type="submit" id="vegetable"  class="filter" name="vegetable" value="VEGETABLE"/>
+                    <input type="submit"    id="all"           class="filter"      name="all"           value="ALL"/>
+                    <input type="submit"    id="fruit"         class="filter"      name="fruit"         value="FRUIT"/>
+                    <input type="submit"    id="vegetable"     class="filter"      name="vegetable"     value="VEGETABLE"/>
+                    <input type="submit"    id="meat"          class="filter"      name="meat"          value="MEAT"/>
+                    <input type="submit"    id="dairy"         class="filter"      name="dairy"         value="DAIRY"/>
+                    <input type="submit"    id="sweet"         class="filter"      name="sweet"         value="SWEETS"/>
                 </form>
             </div>
             <div class="part2">
@@ -68,6 +71,9 @@
                                 <select name="addType">
                                     <option value="1">Fruit</option>
                                     <option value="2">Vegetable</option>
+                                    <option value="3">Meat</option>
+                                    <option value="4">Dairy</option>
+                                    <option value="5">Sweet</option>
                                 </select>
                             </div>
                             <div class="add-item-gen">

@@ -47,11 +47,11 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
             <i class="fa fa-tint" aria-hidden="true"></i>
         </div>
         <div class="icon-filters">
-            <p>Protein</p>
+            <p>Meat</p>
             <i class="fa fa-cutlery" aria-hidden="true"></i>
         </div>
         <div class="icon-filters">
-            <p>Sweets</p>
+            <p>Sweet</p>
             <i class="fa fa-birthday-cake" aria-hidden="true"></i>
         </div>
     </div>
