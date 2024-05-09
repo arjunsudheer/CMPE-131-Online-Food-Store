@@ -14,7 +14,12 @@
             <h1>INVENTORY</h1>
         </div>
         <div class="actualBody">
-            <a class="button-popup" href="#popupstart">Add Item</a>
+            <div class="btn-top-right">
+                <form class="generate" action="../generate-reports/generate-reports.php" method="post">
+                    <button class="generate-btn" type="submit" name="generateButton">Generate Report</button>
+                </form>
+                <a class="button-popup" href="#popupstart">Add Item</a>
+            </div>
             <form name="searchForm" class="searchbar" method="post">
                 <input type="text" class="searchbar-txt" id="searchbar" name="searchbar" 
                         placeholder="Search for Product/Brand" list="searchlist" oninput="showBtnFunc()"/>
