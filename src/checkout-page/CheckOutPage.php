@@ -61,23 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="../navbar/navbar.css">
+
 <head>
     <title>CheckOutPage</title>
     <meta charset="UTF-8">
-    <!-- Load an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CheckOutPage.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 
 <body>
-    <!-- Left side bar -->
-    <link rel="stylesheet" href="navbar.css">
-    </div>
     <div style="margin: 0 auto;">
         <div class="wrapper">
-            <h1 class="title">Delivery Address</h1>
+            <h1>Delivery Address</h1>
             <!-- Map container -->
             <div id="map" style="height: 300px; width: 80%; margin: 0 auto;"></div>
             <!-- Hidden inputs for latitude and longitude -->
@@ -86,42 +82,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
             <!-- Display address -->
             <div id="address"></div>
             <form method="POST">
-                <div style="display: flex;flex-direction: column; text-align: center;">
-                    <label for="name">Name of Order</label>
-                    <input  type="text" id="name" name="name" autocomplete="name" enterkeyhint="next">
+                <div class="address-info">
+                    <div>
+                        <label class="address-labels" for="name">Name of Order:</label>
+                        <input class="address-inputs" type="text" id="name" name="name" autocomplete="name" enterkeyhint="next">
+                    </div>
 
-                    <label for="street-address">Street address</label>
-                    <input type="text" id="street-address" name="street-address" autocomplete="street-address"  enterkeyhint="next"></input>
+                    <div>
+                        <label class="address-labels" for="street-address">Street address:</label>
+                        <input class="address-inputs" type="text" id="street-address" name="street-address" autocomplete="street-address" enterkeyhint="next"></input>
+                    </div>
 
+                    <div>
+                        <label class="address-labels" for="postal-code">ZIP or postal code (optional):</label>
+                        <input class="address-inputs" id="postal-code" name="postal-code" autocomplete="postal-code" enterkeyhint="next">
+                    </div>
 
-                    <label for="postal-code">ZIP or postal code (optional)</label>
-                    <input class="postal-code" id="postal-code" name="postal-code" autocomplete="postal-code" enterkeyhint="next">
-
-                    <label for="city">City</label>
-                    <input  type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next">
+                    <div>
+                        <label class="address-labels" for="city">City:</label>
+                        <input class="address-inputs" type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next">
+                    </div>
                 </div>
 
                 <h2 class="title">Payment Details: </h2>
                 <div class="flex-container-hor">
                     <div><!-- Card Number -->
                         <label>Card Number</label>
-                        <input class="card-number" placeholder="1234 1234 1234 1234" type="text"  maxlength="16" />
+                        <input class="card-number" placeholder="1234 1234 1234 1234" type="text" maxlength="16" />
                     </div>
                     <div><!-- Card Holder -->
                         <label>Card Holder</label>
-                        <input class="card-name" placeholder="FirstName LastName" type="text"  />
+                        <input class="card-name" placeholder="FirstName LastName" type="text" />
                     </div>
                     <div><!-- Date -->
                         <label>Exp. Date</label>
-                        <input class="card-name" placeholder="10/25" type="text" maxlength="5"  />
+                        <input class="card-name" placeholder="10/25" type="text" maxlength="5" />
                     </div>
                     <div><!-- Cvv -->
                         <label>CCV</label>
-                        <input class="card-name" placeholder="123" type="text" maxlength="3"  />
+                        <input class="card-name" placeholder="123" type="text" maxlength="3" />
                     </div>
                 </div>
-
                 <button class="button" id="checkout-button" name="checkout-button">Pay</button>
+
             </form>
         </div>
     </div>
@@ -176,5 +179,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
     // Add click event listener to map
     map.on('click', onMapClick);
 </script>
-<script src="navbar.js"></script>
+
 </html>
