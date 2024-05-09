@@ -1,0 +1,28 @@
+CREATE TABLE employees 
+(
+	id int(6) PRIMARY KEY NOT NULL,
+    firstName varchar(50),
+    lastName varchar(50),
+    email varchar(100) NOT NULL,
+    password varchar(255) NOT NULL,
+    currentCart text,
+    cartHistory text,
+    submissionDate timestamp,
+    paymentInfo text,
+    deliveryLocation text
+);
+
+CREATE TABLE customers
+(
+    id int(6) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    firstName varchar(255) NOT NULL,
+    lastName varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    currentCart text,
+    cartHistory text,
+    submissionDate timestamp,
+    paymentInfo text
+) AUTO_INCREMENT = 1;
+
+CREATE INDEX email_index ON customers (email);

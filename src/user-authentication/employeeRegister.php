@@ -1,12 +1,16 @@
-<?php include("authentication_animation.html"); ?>
+<?php include("authentication_animation.php"); ?>
+<style>
+<?php include "authentication.css"?>
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>OFS - Employee Registration</title>
-    <link rel="stylesheet" href="authentication.css">
 </head>
 <body>
+  <div class="content">
   <header class="top-bar">
     <a href="../main-page/main-page.php">
         <img src="mainLogo.jpg" style="width: 100px; height: auto;">
@@ -120,6 +124,7 @@
           document.getElementById('password-view').checked = false; // Uncheck "Show Password" checkbox
       });
   </script>
+  </div>
   </body>
    <script src="checkPassword.js"></script>
   </html>
