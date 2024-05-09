@@ -1,10 +1,17 @@
-h1{
-    margin: 4px 2px;
-    left:100px;
+body {
+    margin: 0;
+    padding: 0;
 }
+
+h1 {
+    margin: 4px 5px;
+    text-align: center;
+}
+
 form {
     width: 90vw;
 }
+
 input {
     border: 1px solid;
     padding: 0.3em;
@@ -19,41 +26,76 @@ textarea {
 label {
     display: block;
     font-size: 1.2rem;
-    margin-top: 1rem;
+    margin-top: 5px;
 }
 
 select {
     font-size: 16px;
 }
 
-postalCode {
-    width: 50%;
+.wrapper {
+    width: 88%;
+    margin-left: 10%;
+    border: 10px solid black;
 }
-.flex-container-hor{
+
+.address-info>div {
+    margin: 0;
+}
+
+.address-info {
     display: flex;
+    flex-direction: column;
+    text-align: center;
 }
-.flex-container-hor> div {
+
+.address-labels {
+    text-align: left;
+    margin-bottom: 2px;
+    text-decoration: underline;
+    margin-left: 18px;
+}
+
+.address-inputs {
+    width: 85vw;
+    /* margin-left: 15px; */
+}
+
+.flex-container-hor {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-container-hor>div {
     padding: 10px;
     font-size: 30px;
-  }
-.button{
+}
+
+.button {
     background-color: #04AA6D;
     border: none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 16px;
-    margin: 4px 300px;
+    margin-top: 5px;
     cursor: pointer;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
-.title{
-    margin: 4px 200px;
+
+.title {
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 #map {
-    height: 300px; /* Adjust the height as needed */
-    width: 80%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the map horizontally */
+    /* Adjust the height as needed */
+    height: 200px;
+    /* Adjust the width as needed */
+    width: 70%;
 }
