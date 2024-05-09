@@ -17,15 +17,6 @@
 
     //print_r($_POST);
 
-    function writing()
-    {
-        echo "
-                <script type='text/javascript'> 
-                        alert('i dont think so! v2'); 
-                </script>
-                ";
-    }
-
     if (isset($_POST['searchbar']))
     {
         $sortDB = "SELECT * FROM items Where Product LIKE '%" . $_POST['searchbar'] . "%' ORDER BY Product, Brand";
@@ -34,43 +25,7 @@
 
     if (isset($_POST['add']))
     {
-        if ($_POST['addType'] == 1)
-            $addType = "Fruits";
-        else 
-            $addType = "Vegetables";
-        if ($_POST['addImage'] != "" && $_POST['addProduct'] != "" && $_POST['addBrand'] != "" && $_POST['addPrice'] != "" && $_POST['addWeight'] != "" && $_POST['addQuantity'] != "")
-        {
-            if ($_POST['addQuantity'] >= 1)
-                $inStock = true;
-
-            $image_path = "/../../../../OFS_Binary/" .$_POST['addImage'];
-
-            if (file_exists($image_path))
-            {
-                list($imgWidth, $imgHeight) = getimagesize($image_path);
-                if ($imgWidth % $imgHeight == 0)
-                {
-                    $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $_POST['addProduct'] . "', '" . 
-                    $_POST['addBrand'] . "', '" . $_POST['addPrice'] . "', '" . $_POST['addWeight'] . "', '" . $_POST['addQuantity'] . "', '" . $inStock . "', '" . $_POST['addImage'] . "');" . 
-                    "SELECT * FROM items ORDER BY Product, Brand";   
-                }
-            }
-            else {
-                echo "
-                <script type='text/javascript'> 
-                        alert('unable to add'); 
-                </script>
-                ";
-            }
-        }
-        else 
-        {
-            echo "
-                <script type='text/javascript'> 
-                        alert('unable to add'); 
-                </script>
-                ";
-        }
+        addNewItem($_POST);
     }
 
     if (isset($_POST['del']) || isset($_POST['price']) || isset($_POST['weight']) || isset($_POST['quant']))
@@ -85,63 +40,6 @@
                         alert('unable to edit'); 
                 </script>
                 ";
-    }
-
-    function checkEdits($request)
-    {
-        global $type, $sortDB;
-
-        $type = "all";
-
-        if (isset($request['del']))
-        {
-            $sortDB = "DELETE FROM items WHERE Brand ='" . $_POST['delVal'] . "';" 
-            . "SELECT * FROM items ORDER BY Product, Brand";
-            return;
-        }
-    
-        else if (isset($request['price']))
-        {
-            if (is_double($request['price']))
-                if ($request['price'] > 0)
-                {
-                    $sortDB = "UPDATE items SET Price = '" . $_POST['price'] . "' WHERE Brand = '" . $_POST['newPrice'] . "';" 
-                    . "SELECT * FROM items ORDER BY Product, Brand";
-                    return;
-                }
-        }
-    
-        else if (isset($request['weight']))
-        {
-            if (is_double((double)$request['weight']))
-                if ((double)$request['weight'] > 0)
-                {
-                    $sortDB = "UPDATE items SET Weight = '" . $_POST['weight'] . "' WHERE Brand = '" . $_POST['newWeight'] . "';" 
-                    . "SELECT * FROM items ORDER BY Product, Brand";
-                    return;
-                }
-        }
-    
-        else if (isset($request['quant']))
-        {
-            if (is_int((int)$request['quant']) && fmod((double)$request['quant'], 1) == 0)
-            {
-                if ((int)$request['quant'] > 0)
-                {
-                    $sortDB = "UPDATE items SET numStock = '" . $_POST['quant'] . "', inStock = '1' WHERE Brand = '" . $_POST['newQuant'] . "';" 
-                    . "SELECT * FROM items ORDER BY Product, Brand";
-                    return;
-                }
-                else if ($request['quant'] == 0)
-                {
-                    $sortDB = "UPDATE items SET numStock = '0', inStock = '0' WHERE Brand = '" . $_POST['newQuant'] . "';" 
-                    . "SELECT * FROM items ORDER BY Product, Brand";
-                    return;
-                }
-            }
-        }
-
-        throwError();
     }
 
     if (isset($_POST['az']) || isset($_POST['za']) || isset($_POST['inStock']))
@@ -216,27 +114,13 @@
 
     addItems($_POST, $result, $type, $specFilter);
 
-    function checkFilter($request)
-    {
-        global $type, $sortDB, $sort;
-        
-        $type = $request['filter'];
-        if (isset($request['az']))
-        {
-            $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
-            $sort = "A-Z";
-        }
-        else if (isset($_POST['za']))
-        {
-            $sortDB = "SELECT * FROM items ORDER BY Product DESC, Brand DESC";
-            $sort = "Z-A";
-        }
-        else if (isset($_POST['inStock']))
-        {
-            $sortDB = "SELECT * FROM items ORDER BY inStock DESC, Product";
-            $sort = "In Stock";
-        }
-    }
+    $counterString = $counter . " results";
+
+    $_POST['search'] = "";
+    $_POST['searchbar'] = "";
+
+    // Connection close  
+    mysqli_close($connection);
 
     function AddItems($request, $result, $type, $specFilter)
     {
@@ -330,12 +214,204 @@
         }
     }
 
-    $counterString = $counter . " results";
+    function throwAddError($error)
+    {
+        switch ($error)
+        {
+            case 1:
+                echo 
+                "
+                    <script type='text/javascript'> 
+                            alert('unable to add image (Common cause: image is not 1:1 resolution)'); 
+                    </script>
+                ";
+                break;
+            case 2:
+                echo 
+                "
+                    <script type='text/javascript'> 
+                            alert('unable to add item (Common cause: Empty text/image field)'); 
+                    </script>
+                ";
+                break;
+            case 3:
+                echo 
+                "
+                    <script type='text/javascript'> 
+                            alert('unable to add item (Price value invalid)'); 
+                    </script>
+                ";
+                break;
+            case 4:
+                echo 
+                "
+                    <script type='text/javascript'> 
+                            alert('unable to add item (Weight value invalid)'); 
+                    </script>
+                ";
+                break;
+            case 5:
+                echo 
+                "
+                    <script type='text/javascript'> 
+                            alert('unable to add item (Quantity value invalid)'); 
+                    </script>
+                ";
+                break;
+        }
+    }
 
-    $_POST['search'] = "";
-    $_POST['searchbar'] = "";
+    function addNewItem($request)
+    {
+        global $sortDB;
 
-    // Connection close  
-    mysqli_close($connection);
+        $addImage = $request['addImage'];
+        $addType = 0;
+        $addProduct = $request['addProduct'];
+        $addBrand = $request['addBrand'];
+        $addPrice = $request['addPrice'];
+        $addWeight = $request['addWeight'];
+        $addQuantity = $request['addQuantity'];
+        $inStock = true;
+
+        switch ($request['addType'])
+        {
+            case 1:
+                $addType = "Fruits";
+                break;
+            case 2:
+                $addType = "Vegetables";
+                break;
+            case 3:
+                $addType = "Meat";
+                break;
+            case 4:
+                $addType = "Dairy";
+                break;
+            case 5:
+                $addType = "Sweet";
+                break;
+        }
+        
+        $image_path = "D:/SJSU/CMPE_131/OFS_Binary/" . $addImage;
+
+        list($imgWidth, $imgHeight) = getimagesize($image_path);
+        if ($imgWidth % $imgHeight != 0)
+        {
+            throwAddError(1);
+            return;
+        }
+
+        if ($addProduct == "" || $addProduct == "")
+        {
+            throwAddError(2);
+            return;
+        }
+
+        if (!(is_double($addPrice)) && (double)$addPrice <= 0)
+        {
+            throwAddError(3);
+            return;
+        }
+
+        if (!(is_double($addWeight)) && (double)$addWeight <= 0) 
+        {
+            throwAddError(4);
+            return;
+        }
+
+        if (!(is_int($addQuantity)) && fmod((double)$addQuantity, 1) != 0)
+        {
+            throwAddError(5);
+            return;
+        }
+
+        if ($addQuantity == 0)
+            $inStock = false;
+            
+        $sortDB = "INSERT INTO items (Type, Product, Brand, Price, Weight, numStock, inStock, Image) VALUES ('" . $addType . "', '" . $addProduct . "', '" . 
+        $addBrand . "', '" . $addPrice . "', '" . $addWeight . "', '" . $addQuantity . "', '" . $inStock . "', '" . $addImage . "');" . 
+        "SELECT * FROM items ORDER BY Product, Brand";  
+        return; 
+    }
+
+    function checkEdits($request)
+    {
+        global $type, $sortDB;
+
+        $type = "all";
+
+        if (isset($request['del']))
+        {
+            $sortDB = "DELETE FROM items WHERE Brand ='" . $_POST['delVal'] . "';" 
+            . "SELECT * FROM items ORDER BY Product, Brand";
+            return;
+        }
+    
+        else if (isset($request['price']))
+        {
+            if (is_double((double)$request['price']))
+                if ((double)$request['price'] > 0)
+                {
+                    $sortDB = "UPDATE items SET Price = '" . $_POST['price'] . "' WHERE Brand = '" . $_POST['newPrice'] . "';" 
+                    . "SELECT * FROM items ORDER BY Product, Brand";
+                    return;
+                }
+        }
+    
+        else if (isset($request['weight']))
+        {
+            if (is_double((double)$request['weight']))
+                if ((double)$request['weight'] > 0)
+                {
+                    $sortDB = "UPDATE items SET Weight = '" . $_POST['weight'] . "' WHERE Brand = '" . $_POST['newWeight'] . "';" 
+                    . "SELECT * FROM items ORDER BY Product, Brand";
+                    return;
+                }
+        }
+    
+        else if (isset($request['quant']))
+        {
+            if (is_int((int)$request['quant']) && fmod((double)$request['quant'], 1) == 0)
+            {
+                if ((int)$request['quant'] > 0)
+                {
+                    $sortDB = "UPDATE items SET numStock = '" . $_POST['quant'] . "', inStock = '1' WHERE Brand = '" . $_POST['newQuant'] . "';" 
+                    . "SELECT * FROM items ORDER BY Product, Brand";
+                    return;
+                }
+                else if ($request['quant'] == 0)
+                {
+                    $sortDB = "UPDATE items SET numStock = '0', inStock = '0' WHERE Brand = '" . $_POST['newQuant'] . "';" 
+                    . "SELECT * FROM items ORDER BY Product, Brand";
+                    return;
+                }
+            }
+        }
+
+        throwError();
+    }
+
+    function checkFilter($request)
+    {
+        global $type, $sortDB, $sort;
+        
+        $type = $request['filter'];
+        if (isset($request['az']))
+        {
+            $sortDB = "SELECT * FROM items ORDER BY Product, Brand";
+            $sort = "A-Z";
+        }
+        else if (isset($_POST['za']))
+        {
+            $sortDB = "SELECT * FROM items ORDER BY Product DESC, Brand DESC";
+            $sort = "Z-A";
+        }
+        else if (isset($_POST['inStock']))
+        {
+            $sortDB = "SELECT * FROM items ORDER BY inStock DESC, Product";
+            $sort = "In Stock";
+        }
+    }
 
 ?>
