@@ -28,6 +28,8 @@ include("../navbar/navbar.php");
 <?php
 // check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // check if there is a start time and end time
+  if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
     // get the start time
     $startTime = $_POST['startTime'];
     // get the end time
@@ -115,5 +117,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error fetching product sales data: " . mysqli_error($connection);
     }
     mysqli_close($connection);
+  }
+  else {
+    echo "<p id='report-result'>Please provide both a start time and end time.</p>";
+  } 
 }
 ?>
