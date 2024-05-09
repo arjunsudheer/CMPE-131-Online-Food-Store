@@ -50,7 +50,6 @@ select {
 .address-info {
     display: flex;
     flex-direction: column;
-    text-align: center;
 }
 
 .address-labels {
@@ -61,8 +60,8 @@ select {
 }
 
 .address-inputs {
-    width: 85vw;
-    margin-left: -30px;
+    width: 95%;
+    margin-left: 15px;
 }
 
 .flex-container-hor {
