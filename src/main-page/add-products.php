@@ -91,18 +91,20 @@ class AddProductItems
     public function displayProductItems($product_item): void
     {
         while ($row = mysqli_fetch_assoc($product_item)) {
-            // start a new row every 4 product items
-            if ($this->itemsAdded % $this->numProductsPerRow == 0) {
-                echo '<div class="product-item-row">';
-            }
-            // create a new product item div on the main page
-            $product_type = $row["Type"];
-            $product_name = $row["Product"];
-            $product_brand = $row["Brand"];
-            $product_price = $row["Price"];
-            $product_weight = $row["Weight"];
-            $product_image = "../../../OFS_Binary/" . $row["Image"];
-            echo ("
+            // only display products that are in stock
+            if ($row["numStock"] > 0) {
+                // start a new row every 4 product items
+                if ($this->itemsAdded % $this->numProductsPerRow == 0) {
+                    echo '<div class="product-item-row">';
+                }
+                // create a new product item div on the main page
+                $product_type = $row["Type"];
+                $product_name = $row["Product"];
+                $product_brand = $row["Brand"];
+                $product_price = $row["Price"];
+                $product_weight = $row["Weight"];
+                $product_image = "../../../OFS_Binary/" . $row["Image"];
+                echo ("
                 <div class=\"product-item $product_type\">
                     <p>$product_name</p>
                     <p><span class=\"brand-name\">Brand:</span> $product_brand</p>
@@ -116,11 +118,12 @@ class AddProductItems
                 </div>
             ");
 
-            //<a href='../main-page/add-to-cart.php'><button type='submit' name='add-to-cart' id='add-to-cart'>Add</button></a>
-            $this->itemsAdded++;
-            // check if the current product row should be ended
-            if (($this->itemsAdded) % $this->numProductsPerRow == 0) {
-                echo '</div>';
+                //<a href='../main-page/add-to-cart.php'><button type='submit' name='add-to-cart' id='add-to-cart'>Add</button></a>
+                $this->itemsAdded++;
+                // check if the current product row should be ended
+                if (($this->itemsAdded) % $this->numProductsPerRow == 0) {
+                    echo '</div>';
+                }
             }
         }
         // check if an closing div tag needs to be added (when last row has less than 4 product items)

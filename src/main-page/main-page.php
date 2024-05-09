@@ -6,18 +6,20 @@ include("../navbar/navbar.php");
 include("../search-bar/search-bar.html");
 include("add-products.php");
 
+echo 'test';
 // Check if the user is logged in
-if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
     // Display user ID and user type
 } else {
     // If the user is not logged in, display a message or redirect to the login page
     echo "Please log in to view this page.";
     // You can add redirection code here if needed
+    header("Location: ../user-authentication/pickEmployeeOrCustomer.php");
 }
 ?>
 
 <style>
-<?php include 'main-page.css'; ?>
+    <?php include 'main-page.css'; ?>
 </style>
 
 <!DOCTYPE html>
