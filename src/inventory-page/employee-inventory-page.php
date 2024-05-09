@@ -1,5 +1,5 @@
 <style>
-<?php include 'employee-inventory-page.css'; ?>
+    <?php include 'employee-inventory-page.css'; ?>
 </style>
 
 <script src="employee-inventory-page.js"></script>

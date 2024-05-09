@@ -1,0 +1,149 @@
+﻿Product Type,Product Name,Price
+Apple,Gala,1.7
+Apple,Red Delicious,0.9
+Apple,Granny Smith,1.2
+Apple,Fuji,1.5
+Apple,Honeycrisp,1.99
+Apricot,Apricot,1.99
+Avocados,Hass,2.5
+Avocados,Bacon,2.99
+Avocados,Reed,4.99
+Avocados,Lula,3.35
+Bananas,Dole,0.7
+Bananas,Chiquita,0.9
+Bananas,Del Monte,0.58
+Berries,Naturipe (Blueberry) (per 50),5.3
+Berries,Raspberries (per 50),3.99
+Berries,Blackberries (per 50),4.99
+Cherries,Cherries,2.99
+Figs,Figs,4.99
+Grapes,Thompson Seedless/Sultana (per 50),4.95
+Grapes,Concord (per 50),6.32
+Grapes,Crimson Seedless (per 50),7.4
+Grapes,Cotton Candy (per 50),5.99
+Grapes,Moon Drops (per 50),3.99
+Guava,Guava,5.49
+Kiwis,Kiwis,2.99
+Lemons,Lisbon,2.99
+Lemons,Eureka,2.5
+Lemons,Meyer,1.5
+Lemons,Bearss,2.15
+Mangoes,Mangoes,0.8
+Melons,Watermelon,6.99
+Melons,Cantaloupe,3.99
+Melons,Honeydew,4.99
+Oranges,Calamondin,2.42
+Oranges,Cara Cara,1.99
+Oranges,Moro Blood,1.99
+Oranges,Washington Navel,3.99
+Peaches,Babcock,2.89
+Peaches,Donut,4.41
+Peaches,Early Amber,2.99
+Peaches,Arctic Supreme,3.15
+Pears,Bartlett,1.98
+Pears,Bosc,2.49
+Pears,d'Anjou,1.64
+Pineapples,Smoth Cayenne,7.99
+Pineapples,Red Spanish,8.99
+Pineapples,Queen,9.99
+Pineapples,Kona Sugarloaf,7.5
+Pineapples,Pernambuco,8.24
+Strawberries,Honeoye (per 50),5.99
+Strawberries,Earliglow (per 50),4.99
+Strawberries,Allstar (per 50),4.49
+Strawberries,Ozark Beauty (per 50),5.19
+Strawberries,Jewel (per 50),4.25
+Artichoke,Artichoke,2.75
+Asparagus,Green (per 20),4.99
+Asparagus,White (per 20),5.99
+Asparagus,Purple Passion (per 20),4.99
+Asparagus,Wild (per 20),5.99
+Asparagus,Jersey Giant (per 20),4.99
+Green Beans,Bush (per 20),2.99
+Green Beans,Pole (per 20),1.99
+Green Beans,Runner (per 20),2.95
+Green Beans,Long (per 20),3.99
+Beetroot,Beetroot,2.99
+Broccoli,Broccoli,2.49
+Brussel Sprouts,Brussel Sprouts,2.98
+Cabbages,Cabbages,3.38
+Carrots,Imperator,4.99
+Carrots,Danvers,5.99
+Carrots,Nantes,3.99
+Carrots,Chantenay,3.97
+Cauliflower,Cauliflower,2.49
+Celery,Leaf,4.99
+Celery,Celeriac,5.99
+Celery,Pascal,4.97
+Corn,Sweet,0.99
+Corn,Flour,2.86
+Corn,Field/Dent,3.99
+Corn,Flint,2.99
+Cucumber,Armenian,3.95
+Cucumber,English/Seedless,4.99
+Cucumber,Garden,3.99
+Cucumber,Gherkins,4.97
+Cucumber,Kirby,2.99
+Eggplant,Eggplant,2.2
+Garlic,Baja California White,5.95
+Garlic,California White,5.99
+Garlic,Chinese White,4.99
+Garlic,Argentina White,4.95
+Garlic,Mexican Purple,5.99
+Ginger,Ginger,2.99
+Kale,Kale,1.49
+Lettuce,Romaine,3.29
+Lettuce,Little Gem,3.99
+Lettuce,Butterhead,2.99
+Lettuce,Crisphead,2.2
+Mushrooms,Oyster (per 25),3.75
+Mushrooms,King Trumpet (per 25),4.99
+Mushrooms,Lion's Mane (per 25),3.99
+Mushrooms,Button (per 25),2.99
+Mushrooms,Crimini (per 25),2.84
+Onions,Cipolline,1.99
+Onions,Pearl,2.99
+Onions,Vidalia,1.85
+Peas,Peas,1.14
+Peppers,Sweet Bell,2.98
+Peppers,Ananheim,3.99
+Peppers,Fresno,2.88
+Peppers,Habanero,3.49
+Peppers,Jalapeno,3.59
+Peppers,Poblano,2.9
+Peppers,Serrano,2.89
+Potatoes,Fingerling,2.49
+Potatoes,Purple,3.99
+Potatoes,Red,3.49
+Potatoes,Yellow,2.99
+Potatoes,Russet,3.12
+Radishes,Radishes,1.39
+Spinach,Savoy (per 25),2.49
+Spinach,Semi-savoy (per 25),2.19
+Spinach,Smooth-leafed (per 25),2.99
+Tomatoes,Beefsteak,2.19
+Tomatoes,Cherokee,3.19
+Tomatoes,Plum,2.99
+Tomatoes,Cherry,3.14
+Tomatoes,Green,2.99
+Milk,Low Fat,5.99
+Milk,Whole,6.99
+Milk,Almond,5.99
+Meat,Sirloin Steak,12.99
+Meat,Ground Beef,10.99
+Meat,Chicken Thigh,11.99
+Meat,Chicken Breast,13.99
+Meat,Ham,12.99
+Meat,Pork,8.99
+Meat,Bacon,5.99
+Meat,Shrimp,9.99
+Meat,Salmon,10.99
+Cheese,Cheddar,3.99
+Cheese,Mozzerella,4.99
+Cheese,Pepper Jack,3.99
+Cheese,Colby Jack,4.99
+Sweets,Cookie,0.99
+Sweets,Brownie,0.99
+Sweets,Lemon Cake,5.99
+Sweets,Donut,0.99
+Sweets,Muffin,0.99
