@@ -7,7 +7,7 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
-    <link rel="stylesheet" href="../../navbar.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
     <?php include 'inventory-page-helper.php'; ?>
     
     <body>
