@@ -1,11 +1,16 @@
 body {
     margin: 0;
     padding: 0;
+    overflow: none;
 }
 
 h1 {
-    margin: 4px 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
     text-align: center;
+    text-decoration: underline;
 }
 
 form {
@@ -36,7 +41,6 @@ select {
 .wrapper {
     width: 88%;
     margin-left: 10%;
-    border: 10px solid black;
 }
 
 .address-info>div {
@@ -53,12 +57,12 @@ select {
     text-align: left;
     margin-bottom: 2px;
     text-decoration: underline;
-    margin-left: 18px;
+    margin-left: 20px;
 }
 
 .address-inputs {
     width: 85vw;
-    /* margin-left: 15px; */
+    margin-left: -30px;
 }
 
 .flex-container-hor {

@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['checkout-button'])) {
 <body>
     <div style="margin: 0 auto;">
         <div class="wrapper">
-            <h1 class="title">Delivery Address</h1>
+            <h1>Delivery Address</h1>
             <!-- Map container -->
             <div id="map" style="height: 300px; width: 80%; margin: 0 auto;"></div>
             <!-- Hidden inputs for latitude and longitude -->
