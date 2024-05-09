@@ -13,6 +13,13 @@
             <input type="text" class="searchbar" name="searchbar">
             <input type="submit" value="Search"/>  
         </form>
+
+        <div style="padding-left: 95%">
+          <form class="generate" action="generate-reports.php" method="post">
+            <button type="submit" name="generateButton">Generate Report</button>
+          </form>
+        </div>
+        
         <?php echo $tester; ?>
         <div style="padding-left: 11%">
             <form method="post">
