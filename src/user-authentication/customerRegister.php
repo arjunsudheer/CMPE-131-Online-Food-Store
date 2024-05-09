@@ -1,22 +1,17 @@
 <?php include("authentication_animation.html"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>OFS - Customer Registration</title>
     <link rel="stylesheet" href="authentication.css">
-    <!-- Load an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
-    <header class="top-bar">
-        <a href="/main-page/main-page.php">
-            <img src="mainLogo.jpg" style="width: 100px; height: auto;">
-        </a>
-    </header>
+  <header class="top-bar">
+    <a href="../main-page/main-page.php">
+        <img src="mainLogo.jpg" style="width: 100px; height: auto;">
+    </a>
+  </header>
     <div id="authentication-box">
         <h3>Customer Registration</h3>
         <p>Enter your information below:</p>
@@ -52,7 +47,6 @@
                 }
 
                 // Prepare SQL statement to insert user registration data
-                // Prepare SQL statement to insert user registration data
                 $sql = "INSERT INTO customers (firstName, lastName, email, password)
                         VALUES ('$firstName', '$lastName', '$email', '$password')";
 
@@ -63,21 +57,26 @@
                     // Retrieve the ID of the newly registered user
                     $userID = $conn->insert_id;
 
-                    // Set session variable to indicate user is logged in
-                    $_SESSION['user_id'] = $userID;
-                    $_SESSION['user_type'] = 'customer';
+                    // Prepend '1' to the auto-generated ID
+                    $customerID = '1' . str_pad($userID, 5, '0', STR_PAD_LEFT);
 
-                    // Redirect to main page
-                    header("Location: /main-page/main-page.php");
-                    exit(); // Terminate script execution after redirection
-                } else {
-                    // Check if the error is due to duplicate email
-                    if ($conn->errno == 1062) { // Error code for duplicate entry
-                        echo "<div style='color: red;'>Error: Email address already exists!</div>";
+                    // Update the record with the new customer ID
+                    $update_sql = "UPDATE customers SET id = '$customerID' WHERE id = '$userID'";
+                    if ($conn->query($update_sql) === TRUE) {
+                        // Set session variable to indicate user is logged in
+                        $_SESSION['user_id'] = $customerID;
+                        $_SESSION['user_type'] = 'customer';
+
+                        // Redirect to main page
+                        header("Location: ../main-page/main-page.php");
+                        exit(); // Terminate script execution after redirection
                     } else {
-                        // Other registration errors
-                        echo "<div style='color: red;'>Error: " . $conn->error . "</div>";
+                        // Error updating record
+                        echo "<div style='color: red;'>Error updating customer ID: " . $conn->error . "</div>";
                     }
+                } else {
+                    // Registration error
+                    echo "<div style='color: red;'>Error inserting customer record: " . $conn->error . "</div>";
                 }
 
                 // Close connection
@@ -108,17 +107,14 @@
             <div class="authentication-input">
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password-input" placeholder="Enter your password" required autocomplete="off">
-            </div>
-            <div>
                 <input type="checkbox" id="password-view">Show Password
             </div>
             <!-- Registration Button -->
             <button type="submit" class="green-btn" id="registration-button">Sign Up</button>
         </form>
         <!-- Back Button -->
-        <a id="back-btn" href="customerLogin.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a>
+        <a id="back-btn" href="pickEmployeeOrCustomer.php"><-- Back</a>
     </div>
 </body>
-<script src="authentication.js"></script>
-
+<script src="checkPassword.js"></script>
 </html>
