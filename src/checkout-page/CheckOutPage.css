@@ -14,18 +14,18 @@ h1 {
 }
 
 form {
-    width: 90vw;
+  width: 90vw;
 }
 
 input {
-    border: 1px solid;
-    padding: 0.3em;
-    min-height: 25px;
-    border-radius: 10px;
+  border: 1px solid;
+  padding: 0.3em;
+  min-height: 25px;
+  border-radius: 10px;
 }
 
 textarea {
-    min-height: 6em;
+  min-height: 6em;
 }
 
 label {
@@ -35,7 +35,7 @@ label {
 }
 
 select {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .wrapper {

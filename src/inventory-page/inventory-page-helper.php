@@ -225,7 +225,7 @@
             $allItems = $allItems . 
             "<div class='item' id='" . $row["Product"] . "-" . $row["Brand"] . "'>
                 <div class='top-item'>
-                    <img src='../../../OFS_Binary/" . $row["Image"] . "' class='image'>
+                    <img src='../inventory-page/OFS_Binary/" . $row["Image"] . "' class='image'>
                     <div class='itemDesc1'>
                         <p>
                             Type: " . $row["Type"] . " <br>
