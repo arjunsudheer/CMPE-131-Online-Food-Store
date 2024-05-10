@@ -6,7 +6,6 @@ include("../navbar/navbar.php");
 include("../search-bar/search-bar.html");
 include("add-products.php");
 
-echo 'test';
 // Check if the user is logged in
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
     // Display user ID and user type
