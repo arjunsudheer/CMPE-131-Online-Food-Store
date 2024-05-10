@@ -68,8 +68,10 @@
                     if ($conn->query($sql) === TRUE) {
                         // Registration successful
                         echo "<div style='color: green;'>Registration successful!</div>";
+                        $user_id = $conn->insert_id;
 
                         // Set session variable to indicate user is logged in
+                        $_SESSION['user_id'] = $user_id;
                         $_SESSION['user_type'] = 'customer';
 
                         // Redirect to main page

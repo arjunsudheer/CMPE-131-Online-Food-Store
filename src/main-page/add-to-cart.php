@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
         echo 'error';
         die("Connection failed: " . mysqli_connect_error());
     }
-
+    
     // Retrieve the current cart data from the database
     $sql_select_cart = "SELECT currentCart FROM $tableName WHERE id = $user_id";
     $result_select_cart = mysqli_query($connection, $sql_select_cart);
@@ -69,6 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_to_cart'])) {
     } else {
         echo "Error: " . mysqli_error($connection);
     }
+
+    echo $user_id;
+    echo $tableName;
 
     mysqli_close($connection);
 }

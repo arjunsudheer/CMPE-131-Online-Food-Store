@@ -34,7 +34,7 @@ function createProductInformationPopup($productPopup)
         $product_price = $row["Price"];
         $product_weight = $row["Weight"];
         $product_quantity = $row["inStock"];
-        $product_image = "../../OFS_Binary/" . $row["Image"];
+        $product_image = "../inventory-page/OFS_Binary/" . $row["Image"];
         echo ("
                 <div id=\"product-information-popup-animate\" class=\"main-page-box product-information-popup\">
                     <button id=\"popup-close-button\">Close <i class=\"fa fa-window-close-o\" aria-hidden=\"true\"></i></button>

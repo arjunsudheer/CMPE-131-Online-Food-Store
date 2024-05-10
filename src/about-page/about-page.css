@@ -1,8 +1,6 @@
-
-body 
-{
-    background-color: black;
-    overflow: hidden;
+body {
+  background-color: black;
+  overflow: hidden;
 }
 
 .test
@@ -13,88 +11,81 @@ body
     margin-left: 175px;
 }
 
-.header
-{
-    background-color: rgb(144, 170, 146);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 55px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0px 0px 5px 0px;
-    opacity: 100%;
+.header {
+  background-color: rgb(144, 170, 146);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 0px 5px 0px;
+  opacity: 100%;
 }
 
-.test:after 
-{
-    content:'';
-    background: url('../../../OFS_Binary/about3.jpg') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width:100vw;
-    height:100vh;
-    z-index:-1;
-    opacity: 0.2; /* Here is your opacity */
+.test:after {
+  content: "";
+  background: url("../inventory-page/OFS_Binary/about3.jpg") no-repeat center
+    center;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.2; /* Here is your opacity */
 }
 
-.desc, .mission, .gurantee
-{
-    background-color: rgb(184, 202, 182);
-    height: 75%;
-    width: 80%;
-    opacity: 75%;
-    border-radius: 10px;
+.desc,
+.mission,
+.gurantee {
+  background-color: rgb(184, 202, 182);
+  height: 75%;
+  width: 80%;
+  opacity: 75%;
+  border-radius: 10px;
 
-    border-style: solid;
-    border-color: black;
-    border-width: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
 }
 
-.div2
-{
-    height: 30vh;
-    display: flex;
-    align-items: center;
+.div2 {
+  height: 30vh;
+  display: flex;
+  align-items: center;
 }
 
-.desc
-{
-    margin-left: 2%;
+.desc {
+  margin-left: 2%;
 }
 
-.div3
-{
-    height: 30vh;
-    display: flex;
-    align-items: center;
+.div3 {
+  height: 30vh;
+  display: flex;
+  align-items: center;
 }
 
-.mission
-{
-    margin-left: 17%;
+.mission {
+  margin-left: 17%;
 }
 
-.div4
-{
-    height: 30vh;
-    display: flex;
-    align-items: center;
+.div4 {
+  height: 30vh;
+  display: flex;
+  align-items: center;
 }
 
-.gurantee
-{
-    margin-left: 2%;
+.gurantee {
+  margin-left: 2%;
 }
 
-.content
-{
-    padding: 15px;
+.content {
+  padding: 15px;
 }
 
-.content-header, .content-para
-{
-    margin-top: -5px;
+.content-header,
+.content-para {
+  margin-top: -5px;
 }
