@@ -75,7 +75,7 @@ if ($resultCart && mysqli_num_rows($resultCart) > 0) {
         }
         $cartContents = ob_get_clean(); // Capture the output and clear the buffer
     } else {
-        $cartContents = "<p>Error: currentCart data not found in database row</p>";
+        $cartContents = "<p>Cart is empty</p>";
     }
 } else {
     $cartContents = "<p>Error: Unable to fetch cart data from the database</p>";

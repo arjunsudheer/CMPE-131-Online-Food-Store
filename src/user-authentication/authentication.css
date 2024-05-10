@@ -1,3 +1,10 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    margin-left: -10px;
+}
+
 /* Centers, and underlines the header */
 h3 {
     text-decoration: underline;
@@ -19,12 +26,13 @@ div {
     margin: 10px;
 }
 
-/* Align all items to the center */
-body {
+.content
+{
     display: flex;
-    vertical-align: middle;
     justify-content: center;
-    margin-top: 15px;
+    align-items: center;
+    margin-top: 100px;
+    flex-direction: column;
 }
 
 /* Displays a rounded box around the entire form and centers elements */

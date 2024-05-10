@@ -1,4 +1,4 @@
-<?php include("authentication_animation.html"); ?>
+<?php include("authentication_animation.php"); ?>
 <style>
 <?php include 'mainLogin.css'; ?>
 </style>
