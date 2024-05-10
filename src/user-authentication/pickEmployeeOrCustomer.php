@@ -1,4 +1,7 @@
-<?php include("authentication_animation.html"); ?>
+<?php include("authentication_animation.php"); ?>
+<style>
+<?php include 'mainLogin.css'; ?>
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +15,9 @@
 
 <body>
   <header class="top-bar">
-    <a href="../main-page/main-page.php">OFS</a>
+    <a href="../main-page/main-page.php">
+        <img src="mainLogo.jpg" alt="OFS" style="width: 100px; height: auto;">
+    </a>
   </header>
   <div class="container">
     <div class="box">

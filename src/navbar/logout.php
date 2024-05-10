@@ -10,6 +10,6 @@ $_SESSION['user_id'] = 0;
 $_SESSION['user_type'] = 'logged_out';
 
 // Redirect to a specified location
-header("Location: /login/pickEmployeeOrCustomer.html");
+header("Location: ../user-authentication/pickEmployeeOrCustomer.php");
 exit;
 ?>
